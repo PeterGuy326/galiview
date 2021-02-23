@@ -1,4 +1,4 @@
-package cn.edu.zucc.galiview.system;
+package cn.edu.zucc.galiview.system.config;
 
 
 import org.mybatis.spring.annotation.MapperScan;
