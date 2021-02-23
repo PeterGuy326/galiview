@@ -13,7 +13,7 @@
     <bytecodeTargetLevel>
       <module name="eureka" target="8" />
       <module name="galiview" target="1.8" />
-      <module name="system" target="8" />
+      <module name="system" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
