@@ -5,6 +5,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>eureka</module>
+		<module>system</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
