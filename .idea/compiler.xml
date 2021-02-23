@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka" />
+        <module name="gateway" />
         <module name="system" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eureka" target="8" />
       <module name="galiview" target="1.8" />
+      <module name="gateway" target="1.8" />
       <module name="system" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -20,6 +22,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka" options="-parameters" />
       <module name="galiview" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="system" options="-parameters" />
     </option>
   </component>
