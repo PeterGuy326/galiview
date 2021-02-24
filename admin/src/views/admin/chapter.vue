@@ -973,11 +973,15 @@
 </template>
 
 <script>
-export default {
-  name: "chapter"
+  export default {
+  name: "chapter",
+  mounted: function() {
+  this.$parent.activeSidebar("business-chapter-sidebar");
+},
+  methods: {
+}
 }
 </script>
-
 <style scoped>
 
 </style>
