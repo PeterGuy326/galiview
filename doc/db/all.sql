@@ -6,6 +6,10 @@ create table `chapter` (
     primary key (`id`)
 ) engine=InnoDB default charset=utf8mb4 comment='大章';
 
+insert into `chapter` (id, course_id, name) values ('00000000', '00000000', '测试大章一');
+insert into `chapter` (id, course_id, name) values ('00000001', '00000000', '测试大章二');
+insert into `chapter` (id, course_id, name) values ('00000002', '00000000', '测试大章三');
+insert into `chapter` (id, course_id, name) values ('00000003', '00000000', '测试大章四');
 ############################ 测试
 drop table if exists `test`;
 create table `test` (

@@ -1,6 +1,7 @@
-package cn.edu.zucc.galiview.business.controller;
+package cn.edu.zucc.galiview.business.controller.admin;
 
 import cn.edu.zucc.galiview.server.domain.Chapter;
+import cn.edu.zucc.galiview.server.dto.ChapterDto;
 import cn.edu.zucc.galiview.server.service.ChapterService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,13 +11,14 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@RequestMapping("/admin")
 public class ChapterController {
 
     @Resource
     private ChapterService chapterService;
 
     @RequestMapping("/chapter")
-    public List<Chapter> chapter() {
+    public List<ChapterDto> chapter() {
         return chapterService.list();
     }
 }
