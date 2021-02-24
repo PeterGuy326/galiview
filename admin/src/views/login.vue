@@ -72,9 +72,9 @@
 </template>
 
 <script>
-  $('body').attr('class', 'login-layout light-login');
+$('body').attr('class', 'login-layout light-login');
 export default {
-  name: 'App',
+  name: 'Login',
 
 }
 </script>
