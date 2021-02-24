@@ -1,2 +1,2 @@
 # galiview
-springcloud+vue3.0 在线视频点播平台
+springcloud+vue3.0 动漫游戏运营社区平台
