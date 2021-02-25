@@ -5,6 +5,7 @@ import cn.edu.zucc.galiview.server.domain.ChapterExample;
 import cn.edu.zucc.galiview.server.dto.ChapterDto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.mapper.ChapterMapper;
+import cn.edu.zucc.galiview.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
@@ -34,5 +35,12 @@ public class ChapterService {
             chapterDtoList.add(chapterDto);
         }
         pageDto.setList(chapterDtoList);
+    }
+
+    public void save(ChapterDto chapterDto) {
+        chapterDto.setId(UuidUtil.getShortUuid());
+        Chapter chapter = new Chapter();
+        BeanUtils.copyProperties(chapterDto, chapter);
+        chapterMapper.insert(chapter);
     }
 }

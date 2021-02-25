@@ -1,5 +1,6 @@
 package cn.edu.zucc.galiview.business.controller.admin;
 
+import cn.edu.zucc.galiview.server.dto.ChapterDto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.service.ChapterService;
 import org.slf4j.Logger;
@@ -24,5 +25,12 @@ public class ChapterController {
         LOG.info("pageDto: {}", pageDto);
         chapterService.list(pageDto);
         return pageDto;
+    }
+
+    @RequestMapping("/save")
+    public ChapterDto save(@RequestBody ChapterDto chapterDto) {
+        LOG.info("chapterDto: {}", chapterDto);
+        chapterService.save(chapterDto);
+        return chapterDto;
     }
 }
