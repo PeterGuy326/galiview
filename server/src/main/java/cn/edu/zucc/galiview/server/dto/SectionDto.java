@@ -1,8 +1,7 @@
 package cn.edu.zucc.galiview.server.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class SectionDto {
 

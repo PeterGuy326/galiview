@@ -38,6 +38,14 @@ public class ${Domain}Controller {
     @PostMapping("/save")
     public ResponseDto save(@RequestBody ${Domain}Dto ${domain}Dto) {
         // 保存校验
+        <#list fieldList as field>
+            <#if !field.nullAble>
+        ValidatorUtil.require(${domain}Dto.get${field.nameBigHump}(), "${field.nameCn}");
+            </#if>
+            <#if (field.length > 0)>
+        ValidatorUtil.length(${domain}Dto.get${field.nameBigHump}(), "${field.nameCn}", 1, ${field.length});
+            </#if>
+        </#list>
 
         ResponseDto responseDto = new ResponseDto();
         ${domain}Service.save(${domain}Dto);
