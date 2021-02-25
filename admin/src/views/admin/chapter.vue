@@ -143,6 +143,8 @@ export default {
           $("#form-modal").modal("hide");
           _this.list(1);
           Toast.success("保存成功！");
+        } else {
+          Toast.warning(resp.message)
         }
       })
     },
