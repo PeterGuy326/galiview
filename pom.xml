@@ -60,6 +60,12 @@
 				<artifactId>pagehelper-spring-boot-starter</artifactId>
 				<version>1.2.10</version>
 			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.60</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
