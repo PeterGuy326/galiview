@@ -1,4 +1,4 @@
-package cn.edu.zucc.galiview.business.controller.admin;
+package cn.edu.zucc.galiview.${module}.controller.admin;
 
 import cn.edu.zucc.galiview.server.dto.${Domain}Dto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
@@ -15,43 +15,43 @@ import javax.annotation.Resource;
 @RequestMapping("/admin/${domain}")
 public class ${Domain}Controller {
 
-private static final Logger LOG = LoggerFactory.getLogger(${Domain}Controller.class);
-public static final String BUSINESS_NAME = "大章";
+    private static final Logger LOG = LoggerFactory.getLogger(${Domain}Controller.class);
+    public static final String BUSINESS_NAME = "${tableNameCn}";
 
-@Resource
-private ${Domain}Service ${domain}Service;
+    @Resource
+    private ${Domain}Service ${domain}Service;
 
-/**
-* 列表查询
-*/
-@PostMapping("/list")
-public ResponseDto list(@RequestBody PageDto pageDto) {
-ResponseDto responseDto = new ResponseDto();
-${domain}Service.list(pageDto);
-responseDto.setContent(pageDto);
-return responseDto;
-}
+    /**
+    * 列表查询
+    */
+    @PostMapping("/list")
+    public ResponseDto list(@RequestBody PageDto pageDto) {
+        ResponseDto responseDto = new ResponseDto();
+        ${domain}Service.list(pageDto);
+        responseDto.setContent(pageDto);
+        return responseDto;
+    }
 
-/**
-* 保存，id有值时更新，无值时新增
-*/
-@PostMapping("/save")
-public ResponseDto save(@RequestBody ${Domain}Dto ${domain}Dto) {
-// 保存校验
+    /**
+    * 保存，id有值时更新，无值时新增
+    */
+    @PostMapping("/save")
+    public ResponseDto save(@RequestBody ${Domain}Dto ${domain}Dto) {
+        // 保存校验
 
-ResponseDto responseDto = new ResponseDto();
-${domain}Service.save(${domain}Dto);
-responseDto.setContent(${domain}Dto);
-return responseDto;
-}
+        ResponseDto responseDto = new ResponseDto();
+        ${domain}Service.save(${domain}Dto);
+        responseDto.setContent(${domain}Dto);
+        return responseDto;
+    }
 
-/**
-* 删除
-*/
-@DeleteMapping("/delete/{id}")
-public ResponseDto delete(@PathVariable String id) {
-ResponseDto responseDto = new ResponseDto();
-${domain}Service.delete(id);
-return responseDto;
-}
+    /**
+    * 删除
+    */
+    @DeleteMapping("/delete/{id}")
+    public ResponseDto delete(@PathVariable String id) {
+        ResponseDto responseDto = new ResponseDto();
+        ${domain}Service.delete(id);
+        return responseDto;
+    }
 }

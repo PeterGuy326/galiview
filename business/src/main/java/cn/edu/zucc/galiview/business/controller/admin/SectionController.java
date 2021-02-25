@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class SectionController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SectionController.class);
-    public static final String BUSINESS_NAME = "大章";
+    public static final String BUSINESS_NAME = "小节";
 
     @Resource
     private SectionService sectionService;
