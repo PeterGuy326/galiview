@@ -3,7 +3,7 @@ package cn.edu.zucc.galiview.server.service;
 import cn.edu.zucc.galiview.server.domain.Section;
 import cn.edu.zucc.galiview.server.domain.SectionExample;
 import cn.edu.zucc.galiview.server.dto.SectionDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
+import cn.edu.zucc.galiview.server.dto.SectionPageDto;
 import cn.edu.zucc.galiview.server.mapper.SectionMapper;
 import cn.edu.zucc.galiview.server.util.CopyUtil;
 import cn.edu.zucc.galiview.server.util.UuidUtil;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
-        import java.util.Date;
 
 @Service
 public class SectionService {
@@ -25,15 +25,22 @@ public class SectionService {
     /**
     * 列表查询
     */
-    public void list(PageDto pageDto) {
-        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+    public void list(SectionPageDto sectionPageDto) {
+        PageHelper.startPage(sectionPageDto.getPage(), sectionPageDto.getSize());
         SectionExample sectionExample = new SectionExample();
+        SectionExample.Criteria criteria = sectionExample.createCriteria();
+        if (!StringUtils.isEmpty(sectionPageDto.getCourseId())) {
+            criteria.andCourseIdEqualTo(sectionPageDto.getCourseId());
+        }
+        if (!StringUtils.isEmpty(sectionPageDto.getChapterId())) {
+            criteria.andChapterIdEqualTo(sectionPageDto.getChapterId());
+        }
         sectionExample.setOrderByClause("sort asc");
         List<Section> sectionList = sectionMapper.selectByExample(sectionExample);
         PageInfo<Section> pageInfo = new PageInfo<>(sectionList);
-        pageDto.setTotal(pageInfo.getTotal());
+        sectionPageDto.setTotal(pageInfo.getTotal());
         List<SectionDto> sectionDtoList = CopyUtil.copyList(sectionList, SectionDto.class);
-        pageDto.setList(sectionDtoList);
+        sectionPageDto.setList(sectionDtoList);
     }
 
     /**
