@@ -17,32 +17,32 @@
     <div class="row">
       <div v-for="course in courses" class="col-md-4">
         <div class="thumbnail search-thumbnail">
-          <img v-show="!course.image" class="media-object" src="/static/image/demo-course.jpg" />
-          <img v-show="course.image" class="media-object" v-bind:src="course.image" />
+          <img v-show="!course.image" class="media-object" src="/static/image/demo-course.jpg"/>
+          <img v-show="course.image" class="media-object" v-bind:src="course.image"/>
           <div class="caption">
             <div class="clearfix">
               <span class="pull-right label label-primary info-label">
-                {{COURSE_LEVEL | optionKV(course.level)}}
+                {{ COURSE_LEVEL | optionKV(course.level) }}
               </span>
               <span class="pull-right label label-primary info-label">
-                {{COURSE_CHARGE | optionKV(course.charge)}}
+                {{ COURSE_CHARGE | optionKV(course.charge) }}
               </span>
               <span class="pull-right label label-primary info-label">
-                {{COURSE_STATUS | optionKV(course.status)}}
+                {{ COURSE_STATUS | optionKV(course.status) }}
               </span>
             </div>
 
             <h3 class="search-title">
-              <a href="#" class="blue">{{course.name}}</a>
+              <a href="#" class="blue">{{ course.name }}</a>
             </h3>
             <p>
-              <span class="blue bolder bigger-150">{{course.price}}&nbsp;<i class="fa fa-rmb"></i></span>&nbsp;
+              <span class="blue bolder bigger-150">{{ course.price }}&nbsp;<i class="fa fa-rmb"></i></span>&nbsp;
             </p>
-            <p>{{course.summary}}</p>
+            <p>{{ course.summary }}</p>
             <p>
-              <span class="badge badge-info">{{course.id}}</span>
-              <span class="badge badge-info">排序：{{course.sort}}</span>
-              <span class="badge badge-info">时长：{{course.time | formatSecond}}</span>
+              <span class="badge badge-info">{{ course.id }}</span>
+              <span class="badge badge-info">排序：{{ course.sort }}</span>
+              <span class="badge badge-info">时长：{{ course.time | formatSecond }}</span>
             </p>
             <p>
               <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
@@ -60,60 +60,24 @@
       </div>
     </div>
 
-    <!--    <table id="simple-table" class="table  table-bordered table-hover">-->
-    <!--      <thead>-->
-    <!--      <tr>-->
-    <!--        <th>id</th>-->
-    <!--        <th>名称</th>-->
-    <!--        <th>概述</th>-->
-    <!--        <th>时长</th>-->
-    <!--        <th>价格（元）</th>-->
-    <!--        <th>封面</th>-->
-    <!--        <th>级别</th>-->
-    <!--        <th>收费</th>-->
-    <!--        <th>状态</th>-->
-    <!--        <th>报名数</th>-->
-    <!--        <th>顺序</th>-->
-    <!--        <th>操作</th>-->
-    <!--      </tr>-->
-    <!--      </thead>-->
-
-    <!--      <tbody>-->
-    <!--      <tr v-for="course in courses">-->
-    <!--        <td>{{course.id}}</td>-->
-    <!--        <td>{{course.name}}</td>-->
-    <!--        <td>{{course.summary}}</td>-->
-    <!--        <td>{{course.time}}</td>-->
-    <!--        <td>{{course.price}}</td>-->
-    <!--        <td>{{course.image}}</td>-->
-    <!--        <td>{{COURSE_LEVEL | optionKV(course.level)}}</td>-->
-    <!--        <td>{{COURSE_CHARGE | optionKV(course.charge)}}</td>-->
-    <!--        <td>{{COURSE_STATUS | optionKV(course.status)}}</td>-->
-    <!--        <td>{{course.enroll}}</td>-->
-    <!--        <td>{{course.sort}}</td>-->
-    <!--      <td>-->
-    <!--        <div class="hidden-sm hidden-xs btn-group">-->
-    <!--          <button v-on:click="edit(course)" class="btn btn-xs btn-info">-->
-    <!--            <i class="ace-icon fa fa-pencil bigger-120"></i>-->
-    <!--          </button>-->
-    <!--          <button v-on:click="del(course.id)" class="btn btn-xs btn-danger">-->
-    <!--            <i class="ace-icon fa fa-trash-o bigger-120"></i>-->
-    <!--          </button>-->
-    <!--        </div>-->
-    <!--      </td>-->
-    <!--      </tr>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
-
     <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">表单</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">
+                  分类
+                </label>
+                <div class="col-sm-10">
+                  <ul id="tree" class="ztree"></ul>
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
@@ -148,7 +112,7 @@
                 <label class="col-sm-2 control-label">级别</label>
                 <div class="col-sm-10">
                   <select v-model="course.level" class="form-control">
-                    <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">{{o.value}}</option>
+                    <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">{{ o.value }}</option>
                   </select>
                 </div>
               </div>
@@ -156,7 +120,7 @@
                 <label class="col-sm-2 control-label">收费</label>
                 <div class="col-sm-10">
                   <select v-model="course.charge" class="form-control">
-                    <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">{{o.value}}</option>
+                    <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">{{ o.value }}</option>
                   </select>
                 </div>
               </div>
@@ -164,7 +128,7 @@
                 <label class="col-sm-2 control-label">状态</label>
                 <div class="col-sm-10">
                   <select v-model="course.status" class="form-control">
-                    <option v-for="o in COURSE_STATUS" v-bind:value="o.key">{{o.value}}</option>
+                    <option v-for="o in COURSE_STATUS" v-bind:value="o.key">{{ o.value }}</option>
                   </select>
                 </div>
               </div>
@@ -194,10 +158,11 @@
 
 <script>
 import Pagination from "../../components/pagination";
+
 export default {
   components: {Pagination},
   name: "business-course",
-  data: function() {
+  data: function () {
     return {
       course: {},
       courses: [],
@@ -206,9 +171,10 @@ export default {
       COURSE_STATUS: COURSE_STATUS,
     }
   },
-  mounted: function() {
+  mounted: function () {
     let _this = this;
     _this.$refs.pagination.size = 5;
+    _this.initTree();
     _this.list(1);
     // sidebar激活样式方法一
     // this.$parent.activeSidebar("business-course-sidebar");
@@ -242,7 +208,7 @@ export default {
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list', {
         page: page,
         size: _this.$refs.pagination.size,
-      }).then((response)=>{
+      }).then((response) => {
         Loading.hide();
         let resp = response.data;
         _this.courses = resp.content.list;
@@ -268,7 +234,7 @@ export default {
       }
 
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save', _this.course).then((response)=>{
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save', _this.course).then((response) => {
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
@@ -288,7 +254,7 @@ export default {
       let _this = this;
       Confirm.show("删除课程后不可恢复，确认删除？", function () {
         Loading.show();
-        _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course/delete/' + id).then((response)=>{
+        _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course/delete/' + id).then((response) => {
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
@@ -306,6 +272,37 @@ export default {
       let _this = this;
       SessionStorage.set("course", course);
       _this.$router.push("/business/chapter");
+    },
+
+    initTree() {
+      let setting = {
+        check: {
+          enable: true
+        },
+        data: {
+          simpleData: {
+            enable: true
+          }
+        }
+      };
+
+      let zNodes = [
+        {id: 1, pId: 0, name: "随意勾选 1", open: true},
+        {id: 11, pId: 1, name: "随意勾选 1-1", open: true},
+        {id: 111, pId: 11, name: "随意勾选 1-1-1"},
+        {id: 112, pId: 11, name: "随意勾选 1-1-2"},
+        {id: 12, pId: 1, name: "随意勾选 1-2", open: true},
+        {id: 121, pId: 12, name: "随意勾选 1-2-1"},
+        {id: 122, pId: 12, name: "随意勾选 1-2-2"},
+        {id: 2, pId: 0, name: "随意勾选 2", checked: true, open: true},
+        {id: 21, pId: 2, name: "随意勾选 2-1"},
+        {id: 22, pId: 2, name: "随意勾选 2-2", open: true},
+        {id: 221, pId: 22, name: "随意勾选 2-2-1", checked: true},
+        {id: 222, pId: 22, name: "随意勾选 2-2-2"},
+        {id: 23, pId: 2, name: "随意勾选 2-3"}
+      ];
+
+      $.fn.zTree.init($("#tree"), setting, zNodes);
     }
   }
 }
