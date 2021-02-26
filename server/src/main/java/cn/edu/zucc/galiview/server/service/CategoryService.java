@@ -3,12 +3,9 @@ package cn.edu.zucc.galiview.server.service;
 import cn.edu.zucc.galiview.server.domain.Category;
 import cn.edu.zucc.galiview.server.domain.CategoryExample;
 import cn.edu.zucc.galiview.server.dto.CategoryDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.mapper.CategoryMapper;
 import cn.edu.zucc.galiview.server.util.CopyUtil;
 import cn.edu.zucc.galiview.server.util.UuidUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -22,17 +19,14 @@ public class CategoryService {
     private CategoryMapper categoryMapper;
 
     /**
-    * 列表查询
-    */
-    public void list(PageDto pageDto) {
-        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+     * 列表查询
+     */
+    public List<CategoryDto> all() {
         CategoryExample categoryExample = new CategoryExample();
         categoryExample.setOrderByClause("sort asc");
         List<Category> categoryList = categoryMapper.selectByExample(categoryExample);
-        PageInfo<Category> pageInfo = new PageInfo<>(categoryList);
-        pageDto.setTotal(pageInfo.getTotal());
         List<CategoryDto> categoryDtoList = CopyUtil.copyList(categoryList, CategoryDto.class);
-        pageDto.setList(categoryDtoList);
+        return categoryDtoList;
     }
 
     /**

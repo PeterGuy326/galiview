@@ -1,7 +1,6 @@
 package cn.edu.zucc.galiview.business.controller.admin;
 
 import cn.edu.zucc.galiview.server.dto.CategoryDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
 import cn.edu.zucc.galiview.server.service.CategoryService;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
@@ -10,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/category")
@@ -24,11 +24,11 @@ public class CategoryController {
     /**
     * 列表查询
     */
-    @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    @PostMapping("/all")
+    public ResponseDto all() {
         ResponseDto responseDto = new ResponseDto();
-        categoryService.list(pageDto);
-        responseDto.setContent(pageDto);
+        List<CategoryDto> categoryDtoList = categoryService.all();
+        responseDto.setContent(categoryDtoList);
         return responseDto;
     }
 
