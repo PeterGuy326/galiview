@@ -8,9 +8,9 @@ create table course
     time       int                  default 0 comment '时长|单位秒',
     price      decimal(8, 2)        default 0.00 comment '价格（元）',
     image      varchar(100) comment '封面',
-    level      char(1) comment '级别|ONE("1", "初级"),TWO("2", "中级"),THREE("3", "高级")',
-    charge     char(1) comment '收费|CHARGE("C", "收费"),FREE("F", "免费")',
-    status     char(1) comment '状态|PUBLISH("P", "发布"),DRAFT("D", "草稿")',
+    level char(1) comment '级别|枚举[CourseLevelEnum]：ONE("1", "初级"),TWO("2", "中级"),THREE("3", "高级")',
+    charge char(1) comment '收费|枚举[CourseChargeEnum]：CHARGE("C", "收费"),FREE("F", "免费")',
+    status char(1) comment '状态|枚举[CourseStatusEnum]：PUBLISH("P", "发布"),DRAFT("D", "草稿")',
     enroll     integer              default 0 comment '报名数',
     sort       int comment '顺序',
     created_at datetime(3) comment '创建时间',
@@ -20,7 +20,7 @@ create table course
   default charset = utf8mb4 comment ='课程';
 
 INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000001', '测试课程01', '这是一门测试课程', 7200, 19.9, '', 0, 'C', 'D', 100, 0, now(), now());
+VALUES ('00000001', '测试课程01', '这是一门测试课程', 7200, 19.9, '', 1, 'C', 'D', 100, 0, now(), now());
 
 -- 大章
 drop table if exists `chapter`;
