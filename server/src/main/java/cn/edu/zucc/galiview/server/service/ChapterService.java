@@ -3,7 +3,7 @@ package cn.edu.zucc.galiview.server.service;
 import cn.edu.zucc.galiview.server.domain.Chapter;
 import cn.edu.zucc.galiview.server.domain.ChapterExample;
 import cn.edu.zucc.galiview.server.dto.ChapterDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
+import cn.edu.zucc.galiview.server.dto.ChapterPageDto;
 import cn.edu.zucc.galiview.server.mapper.ChapterMapper;
 import cn.edu.zucc.galiview.server.util.CopyUtil;
 import cn.edu.zucc.galiview.server.util.UuidUtil;
@@ -24,14 +24,18 @@ public class ChapterService {
     /**
      * 列表查询
      */
-    public void list(PageDto pageDto) {
-        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+    public void list(ChapterPageDto chapterPageDto) {
+        PageHelper.startPage(chapterPageDto.getPage(), chapterPageDto.getSize());
         ChapterExample chapterExample = new ChapterExample();
+        ChapterExample.Criteria criteria = chapterExample.createCriteria();
+        if (!StringUtils.isEmpty(chapterPageDto.getCourseId())) {
+            criteria.andCourseIdEqualTo(chapterPageDto.getCourseId());
+        }
         List<Chapter> chapterList = chapterMapper.selectByExample(chapterExample);
         PageInfo<Chapter> pageInfo = new PageInfo<>(chapterList);
-        pageDto.setTotal(pageInfo.getTotal());
+        chapterPageDto.setTotal(pageInfo.getTotal());
         List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList, ChapterDto.class);
-        pageDto.setList(chapterDtoList);
+        chapterPageDto.setList(chapterDtoList);
     }
 
     /**

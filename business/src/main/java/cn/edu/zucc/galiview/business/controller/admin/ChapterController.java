@@ -1,7 +1,7 @@
 package cn.edu.zucc.galiview.business.controller.admin;
 
 import cn.edu.zucc.galiview.server.dto.ChapterDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
+import cn.edu.zucc.galiview.server.dto.ChapterPageDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
 import cn.edu.zucc.galiview.server.service.ChapterService;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
@@ -25,10 +25,11 @@ public class ChapterController {
      * 列表查询
      */
     @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    public ResponseDto list(@RequestBody ChapterPageDto chapterPageDto) {
         ResponseDto responseDto = new ResponseDto();
-        chapterService.list(pageDto);
-        responseDto.setContent(pageDto);
+        ValidatorUtil.require(chapterPageDto.getCourseId(), "课程ID");
+        chapterService.list(chapterPageDto);
+        responseDto.setContent(chapterPageDto);
         return responseDto;
     }
 
