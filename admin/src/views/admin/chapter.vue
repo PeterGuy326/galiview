@@ -109,7 +109,7 @@ export default {
     _this.course = course;
     _this.list(1);
     // sidebar激活样式方法一
-    // this.$parent.activeSidebar("business-chapter-sidebar");
+    this.$parent.activeSidebar("business-chapter-sidebar");
 
   },
   methods: {
