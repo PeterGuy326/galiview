@@ -187,6 +187,7 @@ export default {
     add() {
       let _this = this;
       _this.course = {};
+      _this.tree.checkAllNodes(false);
       $("#form-modal").modal("show");
     },
 
@@ -196,6 +197,7 @@ export default {
     edit(course) {
       let _this = this;
       _this.course = $.extend({}, course);
+      _this.listCategory(course.id);
       $("#form-modal").modal("show");
     },
 
@@ -313,7 +315,31 @@ export default {
 
       _this.tree = $.fn.zTree.init($("#tree"), setting, zNodes);
 
-    }
+      // 展开所有的节点
+      // _this.tree.expandAll(true);
+    },
+
+    /**
+     * 查找课程下所有分类
+     * @param courseId
+     */
+    listCategory(courseId) {
+      let _this = this;
+      Loading.show();
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res)=>{
+        Loading.hide();
+        console.log("查找课程下所有分类结果：", res);
+        let response = res.data;
+        let categorys = response.content;
+
+        // 勾选查询到的分类
+        _this.tree.checkAllNodes(false);
+        for (let i = 0; i < categorys.length; i++) {
+          let node = _this.tree.getNodeByParam("id", categorys[i].categoryId);
+          _this.tree.checkNode(node, true);
+        }
+      })
+    },
   }
 }
 </script>
