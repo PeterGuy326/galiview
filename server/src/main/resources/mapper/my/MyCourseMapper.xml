@@ -7,4 +7,20 @@
         where c.id = #{courseId}
     </update>
 
+    <update id="updateSort" parameterType="cn.edu.zucc.galiview.server.dto.SortDto">
+        update course set `sort`= #{newSort} where id = #{id}
+    </update>
+
+    <update id="moveSortsBackward" parameterType="cn.edu.zucc.galiview.server.dto.SortDto">
+        <![CDATA[
+        update course set `sort`= (`sort`+1) where `sort` >= #{newSort} and `sort` <= #{oldSort} and id != #{id}
+        ]]>
+    </update>
+
+    <update id="moveSortsForward" parameterType="cn.edu.zucc.galiview.server.dto.SortDto">
+        <![CDATA[
+        update course set `sort`= (`sort`-1) where `sort` <= #{newSort} and `sort` >= #{oldSort} and id != #{id}
+        ]]>
+    </update>
+
 </mapper>
