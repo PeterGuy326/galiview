@@ -1,9 +1,6 @@
 package cn.edu.zucc.galiview.business.controller.admin;
 
-import cn.edu.zucc.galiview.server.dto.CourseCategoryDto;
-import cn.edu.zucc.galiview.server.dto.CourseDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
-import cn.edu.zucc.galiview.server.dto.ResponseDto;
+import cn.edu.zucc.galiview.server.dto.*;
 import cn.edu.zucc.galiview.server.service.CourseCategoryService;
 import cn.edu.zucc.galiview.server.service.CourseService;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
@@ -74,6 +71,21 @@ public class CourseController {
         ResponseDto responseDto = new ResponseDto();
         List<CourseCategoryDto> dtoList = courseCategoryService.listByCourse(courseId);
         responseDto.setContent(dtoList);
+        return responseDto;
+    }
+
+    @GetMapping("/find-content/{id}")
+    public ResponseDto findContent(@PathVariable String id) {
+        ResponseDto responseDto = new ResponseDto();
+        CourseContentDto contentDto = courseService.findContent(id);
+        responseDto.setContent(contentDto);
+        return responseDto;
+    }
+
+    @PostMapping("/save-content")
+    public ResponseDto saveContent(@RequestBody CourseContentDto contentDto) {
+        ResponseDto responseDto = new ResponseDto();
+        courseService.saveContent(contentDto);
         return responseDto;
     }
 }
