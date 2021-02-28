@@ -1,8 +1,8 @@
 package cn.edu.zucc.galiview.business.controller.admin;
 
-import cn.edu.zucc.galiview.server.dto.TeacherDto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
+import cn.edu.zucc.galiview.server.dto.TeacherDto;
 import cn.edu.zucc.galiview.server.service.TeacherService;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
 import org.slf4j.Logger;
@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/teacher")
@@ -22,8 +23,19 @@ public class TeacherController {
     private TeacherService teacherService;
 
     /**
-    * 列表查询
-    */
+     * 列表查询
+     */
+    @PostMapping("/all")
+    public ResponseDto all() {
+        ResponseDto responseDto = new ResponseDto();
+        List<TeacherDto> teacherDtoList = teacherService.all();
+        responseDto.setContent(teacherDtoList);
+        return responseDto;
+    }
+
+    /**
+     * 列表查询
+     */
     @PostMapping("/list")
     public ResponseDto list(@RequestBody PageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
@@ -33,8 +45,8 @@ public class TeacherController {
     }
 
     /**
-    * 保存，id有值时更新，无值时新增
-    */
+     * 保存，id有值时更新，无值时新增
+     */
     @PostMapping("/save")
     public ResponseDto save(@RequestBody TeacherDto teacherDto) {
         // 保存校验
@@ -53,8 +65,8 @@ public class TeacherController {
     }
 
     /**
-    * 删除
-    */
+     * 删除
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();

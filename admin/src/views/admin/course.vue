@@ -17,32 +17,32 @@
     <div class="row">
       <div v-for="course in courses" class="col-md-4">
         <div class="thumbnail search-thumbnail">
-          <img v-show="!course.image" class="media-object" src="/static/image/demo-course.jpg"/>
-          <img v-show="course.image" class="media-object" v-bind:src="course.image"/>
+          <img v-show="!course.image" class="media-object" src="/static/image/demo-course.jpg" />
+          <img v-show="course.image" class="media-object" v-bind:src="course.image" />
           <div class="caption">
             <div class="clearfix">
               <span class="pull-right label label-primary info-label">
-                {{ COURSE_LEVEL | optionKV(course.level) }}
+                {{COURSE_LEVEL | optionKV(course.level)}}
               </span>
               <span class="pull-right label label-primary info-label">
-                {{ COURSE_CHARGE | optionKV(course.charge) }}
+                {{COURSE_CHARGE | optionKV(course.charge)}}
               </span>
               <span class="pull-right label label-primary info-label">
-                {{ COURSE_STATUS | optionKV(course.status) }}
+                {{COURSE_STATUS | optionKV(course.status)}}
               </span>
             </div>
 
             <h3 class="search-title">
-              <a href="#" class="blue">{{ course.name }}</a>
+              <a href="#" class="blue">{{course.name}}</a>
             </h3>
             <p>
-              <span class="blue bolder bigger-150">{{ course.price }}&nbsp;<i class="fa fa-rmb"></i></span>&nbsp;
+              <span class="blue bolder bigger-150">{{course.price}}&nbsp;<i class="fa fa-rmb"></i></span>&nbsp;
             </p>
-            <p>{{ course.summary }}</p>
+            <p>{{course.summary}}</p>
             <p>
-              <span class="badge badge-info">{{ course.id }}</span>
-              <span class="badge badge-info">排序：{{ course.sort }}</span>
-              <span class="badge badge-info">时长：{{ course.time | formatSecond }}</span>
+              <span class="badge badge-info">{{course.id}}</span>
+              <span class="badge badge-info">排序：{{course.sort}}</span>
+              <span class="badge badge-info">时长：{{course.time | formatSecond}}</span>
             </p>
             <p>
               <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
@@ -70,8 +70,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">表单</h4>
           </div>
           <div class="modal-body">
@@ -88,6 +87,14 @@
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
                   <input v-model="course.name" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">讲师</label>
+                <div class="col-sm-10">
+                  <select v-model="course.teacherId" class="form-control">
+                    <option v-for="o in teachers" v-bind:value="o.id">{{o.name}}</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -118,7 +125,7 @@
                 <label class="col-sm-2 control-label">级别</label>
                 <div class="col-sm-10">
                   <select v-model="course.level" class="form-control">
-                    <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">{{ o.value }}</option>
+                    <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">{{o.value}}</option>
                   </select>
                 </div>
               </div>
@@ -126,7 +133,7 @@
                 <label class="col-sm-2 control-label">收费</label>
                 <div class="col-sm-10">
                   <select v-model="course.charge" class="form-control">
-                    <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">{{ o.value }}</option>
+                    <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">{{o.value}}</option>
                   </select>
                 </div>
               </div>
@@ -134,7 +141,7 @@
                 <label class="col-sm-2 control-label">状态</label>
                 <div class="col-sm-10">
                   <select v-model="course.status" class="form-control">
-                    <option v-for="o in COURSE_STATUS" v-bind:value="o.key">{{ o.value }}</option>
+                    <option v-for="o in COURSE_STATUS" v-bind:value="o.key">{{o.value}}</option>
                   </select>
                 </div>
               </div>
@@ -164,15 +171,14 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">内容编辑</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
                 <div class="col-lg-12">
-                  {{ saveContentLabel }}
+                  {{saveContentLabel}}
                 </div>
               </div>
               <div class="form-group">
@@ -200,8 +206,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">排序</h4>
           </div>
           <div class="modal-body">
@@ -242,11 +247,10 @@
 
 <script>
 import Pagination from "../../components/pagination";
-
 export default {
   components: {Pagination},
   name: "business-course",
-  data: function () {
+  data: function() {
     return {
       course: {},
       courses: [],
@@ -260,13 +264,15 @@ export default {
         id: "",
         oldSort: 0,
         newSort: 0
-      }
+      },
+      teachers: [],
     }
   },
-  mounted: function () {
+  mounted: function() {
     let _this = this;
     _this.$refs.pagination.size = 5;
     _this.allCategory();
+    _this.allTeacher();
     _this.list(1);
     // sidebar激活样式方法一
     // this.$parent.activeSidebar("business-course-sidebar");
@@ -304,7 +310,7 @@ export default {
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list', {
         page: page,
         size: _this.$refs.pagination.size,
-      }).then((response) => {
+      }).then((response)=>{
         Loading.hide();
         let resp = response.data;
         _this.courses = resp.content.list;
@@ -337,7 +343,7 @@ export default {
       _this.course.categorys = categorys;
 
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save', _this.course).then((response) => {
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save', _this.course).then((response)=>{
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
@@ -357,7 +363,7 @@ export default {
       let _this = this;
       Confirm.show("删除课程后不可恢复，确认删除？", function () {
         Loading.show();
-        _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course/delete/' + id).then((response) => {
+        _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course/delete/' + id).then((response)=>{
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
@@ -380,7 +386,7 @@ export default {
     allCategory() {
       let _this = this;
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/category/all').then((response) => {
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/category/all').then((response)=>{
         Loading.hide();
         let resp = response.data;
         _this.categorys = resp.content;
@@ -420,7 +426,7 @@ export default {
     listCategory(courseId) {
       let _this = this;
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res) => {
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res)=>{
         Loading.hide();
         console.log("查找课程下所有分类结果：", res);
         let response = res.data;
@@ -452,7 +458,7 @@ export default {
       _this.saveContentLabel = "";
 
       Loading.show();
-      _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/course/find-content/' + id).then((response) => {
+      _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/course/find-content/' + id).then((response)=>{
         Loading.hide();
         let resp = response.data;
 
@@ -463,7 +469,7 @@ export default {
           }
 
           // 定时自动保存
-          let saveContentInterval = setInterval(function () {
+          let saveContentInterval = setInterval(function() {
             _this.saveContent();
           }, 5000);
           // 关闭内容框时，清空自动保存任务
@@ -479,13 +485,13 @@ export default {
     /**
      * 保存内容
      */
-    saveContent() {
+    saveContent () {
       let _this = this;
       let content = $("#content").summernote("code");
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save-content', {
         id: _this.course.id,
         content: content
-      }).then((response) => {
+      }).then((response)=>{
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
@@ -530,7 +536,17 @@ export default {
           Toast.error("更新排序失败");
         }
       });
-    }
+    },
+
+    allTeacher() {
+      let _this = this;
+      Loading.show();
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/teacher/all').then((response)=>{
+        Loading.hide();
+        let resp = response.data;
+        _this.teachers = resp.content;
+      })
+    },
   }
 }
 </script>

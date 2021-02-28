@@ -955,6 +955,76 @@ public class CourseExample {
             addCriterion("updated_at not between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
+
+        public Criteria andTeacherIdIsNull() {
+            addCriterion("teacher_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdIsNotNull() {
+            addCriterion("teacher_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdEqualTo(String value) {
+            addCriterion("teacher_id =", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdNotEqualTo(String value) {
+            addCriterion("teacher_id <>", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdGreaterThan(String value) {
+            addCriterion("teacher_id >", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdGreaterThanOrEqualTo(String value) {
+            addCriterion("teacher_id >=", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdLessThan(String value) {
+            addCriterion("teacher_id <", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdLessThanOrEqualTo(String value) {
+            addCriterion("teacher_id <=", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdLike(String value) {
+            addCriterion("teacher_id like", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdNotLike(String value) {
+            addCriterion("teacher_id not like", value, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdIn(List<String> values) {
+            addCriterion("teacher_id in", values, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdNotIn(List<String> values) {
+            addCriterion("teacher_id not in", values, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdBetween(String value1, String value2) {
+            addCriterion("teacher_id between", value1, value2, "teacherId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeacherIdNotBetween(String value1, String value2) {
+            addCriterion("teacher_id not between", value1, value2, "teacherId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -15,6 +15,7 @@
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="teacher_id" jdbcType="CHAR" property="teacherId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, 
-    updated_at
+    updated_at, teacher_id
   </sql>
   <select id="selectByExample" parameterType="cn.edu.zucc.galiview.server.domain.CourseExample" resultMap="BaseResultMap">
     select
@@ -112,13 +113,13 @@
     insert into course (id, name, summary, 
       time, price, image, 
       level, charge, status, enroll, 
-      sort, created_at, updated_at
-      )
+      sort, created_at, updated_at, 
+      teacher_id)
     values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
       #{time,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{image,jdbcType=VARCHAR}, 
       #{level,jdbcType=CHAR}, #{charge,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{enroll,jdbcType=INTEGER}, 
-      #{sort,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
-      )
+      #{sort,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{teacherId,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.zucc.galiview.server.domain.Course">
     insert into course
@@ -162,6 +163,9 @@
       <if test="updatedAt != null">
         updated_at,
       </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -202,6 +206,9 @@
       </if>
       <if test="updatedAt != null">
         #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -253,6 +260,9 @@
       <if test="record.updatedAt != null">
         updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.teacherId != null">
+        teacher_id = #{record.teacherId,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,7 +282,8 @@
       enroll = #{record.enroll,jdbcType=INTEGER},
       sort = #{record.sort,jdbcType=INTEGER},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      teacher_id = #{record.teacherId,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -316,6 +327,9 @@
       <if test="updatedAt != null">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       </if>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -332,7 +346,8 @@
       enroll = #{enroll,jdbcType=INTEGER},
       sort = #{sort,jdbcType=INTEGER},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      teacher_id = #{teacherId,jdbcType=CHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>
