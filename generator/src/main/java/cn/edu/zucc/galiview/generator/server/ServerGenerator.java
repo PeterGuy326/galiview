@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.*;
 
 public class ServerGenerator {
-    static String MODULE = "business";
+    static String MODULE = "file";
     static String toDtoPath = "server//src//main//java//cn//edu//zucc//galiview//server//dto//";
     static String toServicePath = "server//src//main//java//cn//edu//zucc//galiview//server//service//";
     static String toControllerPath = MODULE + "//src//main//java//cn//edu//zucc//galiview//" + MODULE + "//controller//admin//";
