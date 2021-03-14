@@ -420,7 +420,7 @@
 
                 <b class="arrow"></b>
               </li>
-              <li class="active" id="business-chapter-sidebar">
+              <li class="active" id="business-teacher-sidebar">
                 <router-link to="/business/teacher">
                   <i class="menu-icon fa fa-caret-right"></i>
                   讲师管理
