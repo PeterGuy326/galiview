@@ -86,7 +86,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">视频</label>
                 <div class="col-sm-10">
-                  <file v-bind:id="'video-upload'"
+                  <file v-bind:input-id="'video-upload'"
                         v-bind:text="'上传视频'"
                         v-bind:suffixs="['mp4']"
                         v-bind:use="FILE_USE.COURSE.key"
@@ -253,7 +253,7 @@ export default {
       let _this = this;
       let video = resp.content.path;
       _this.section.video = video;
-      _this.getTime()
+      _this.getTime();
     },
 
     /**
@@ -261,8 +261,8 @@ export default {
      */
     getTime() {
       let _this = this;
-      let ele = document.getElementById("video")
-      _this.section.time = parseInt(ele.duration, 10)
+      let ele = document.getElementById("video");
+      _this.section.time = parseInt(ele.duration, 10);
     },
   }
 }
