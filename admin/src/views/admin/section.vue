@@ -86,11 +86,11 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">视频</label>
                 <div class="col-sm-10">
-                  <file v-bind:input-id="'video-upload'"
-                        v-bind:text="'上传视频'"
-                        v-bind:suffixs="['mp4']"
-                        v-bind:use="FILE_USE.COURSE.key"
-                        v-bind:after-upload="afterUpload"></file>
+                  <big-file v-bind:input-id="'video-upload'"
+                            v-bind:text="'上传大视频'"
+                            v-bind:suffixs="['mp4']"
+                            v-bind:use="FILE_USE.COURSE.key"
+                            v-bind:after-upload="afterUpload"></big-file>
                   <div v-show="section.video" class="row">
                     <div class="col-md-9">
                       <video v-bind:src="section.video" id="video" controls="controls"></video>
@@ -132,9 +132,9 @@
 
 <script>
 import Pagination from "../../components/pagination";
-import File from "../../components/file";
+import BigFile from "../../components/big-file";
 export default {
-  components: {Pagination, File},
+  components: {Pagination, BigFile},
   name: "business-section",
   data: function() {
     return {
