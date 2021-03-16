@@ -2,9 +2,8 @@ package cn.edu.zucc.galiview.server.mapper;
 
 import cn.edu.zucc.galiview.server.domain.File;
 import cn.edu.zucc.galiview.server.domain.FileExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface FileMapper {
     long countByExample(FileExample example);

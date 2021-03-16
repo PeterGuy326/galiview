@@ -19,6 +19,14 @@ public class File {
 
     private Date updatedAt;
 
+    private Integer shardIndex;
+
+    private Integer shardSize;
+
+    private Integer shardTotal;
+
+    private String key;
+
     public String getId() {
         return id;
     }
@@ -83,6 +91,38 @@ public class File {
         this.updatedAt = updatedAt;
     }
 
+    public Integer getShardIndex() {
+        return shardIndex;
+    }
+
+    public void setShardIndex(Integer shardIndex) {
+        this.shardIndex = shardIndex;
+    }
+
+    public Integer getShardSize() {
+        return shardSize;
+    }
+
+    public void setShardSize(Integer shardSize) {
+        this.shardSize = shardSize;
+    }
+
+    public Integer getShardTotal() {
+        return shardTotal;
+    }
+
+    public void setShardTotal(Integer shardTotal) {
+        this.shardTotal = shardTotal;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -97,6 +137,10 @@ public class File {
         sb.append(", use=").append(use);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
+        sb.append(", shardIndex=").append(shardIndex);
+        sb.append(", shardSize=").append(shardSize);
+        sb.append(", shardTotal=").append(shardTotal);
+        sb.append(", key=").append(key);
         sb.append("]");
         return sb.toString();
     }
