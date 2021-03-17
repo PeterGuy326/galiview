@@ -39,6 +39,27 @@ export default {
       let formData = new window.FormData();
       let file = _this.$refs.file.files[0];
 
+      console.log(file);
+      /*
+        name: "test.mp4"
+        lastModified: 1901173357457
+        lastModifiedDate: Tue May 27 2099 14:49:17 GMT+0800 (中国标准时间) {}
+        webkitRelativePath: ""
+        size: 37415970
+        type: "video/mp4"
+      */
+
+      // 生成文件标识，标识多次上传的是不是同一个文件
+      let key = hex_md5(file);
+      let key10 = parseInt(key, 16);
+      let key62 = Tool._10to62(key10);
+      console.log(key, key10, key62);
+      /*
+        d41d8cd98f00b204e9800998ecf8427e
+        2.8194976848941264e+38
+        6sfSqfOwzmik4A4icMYuUe
+       */
+
       // 判断文件格式
       let suffixs = _this.suffixs;
       let fileName = file.name;
@@ -74,6 +95,7 @@ export default {
       formData.append('name', file.name);
       formData.append('suffix', suffix);
       formData.append('size', size);
+      formData.append('key', key62);
       Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload', formData).then((response)=>{
         Loading.hide();
