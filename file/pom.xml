@@ -41,6 +41,12 @@
             <groupId>cn.edu.zucc</groupId>
             <artifactId>server</artifactId>
         </dependency>
+
+        <!-- 阿里云oss -->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
     </dependencies>
 
 
