@@ -7,44 +7,44 @@ import java.util.Date;
 public class FileDto {
 
     /**
-    * id
-    */
+     * id
+     */
     private String id;
 
     /**
-    * 相对路径
-    */
+     * 相对路径
+     */
     private String path;
 
     /**
-    * 文件名
-    */
+     * 文件名
+     */
     private String name;
 
     /**
-    * 后缀
-    */
+     * 后缀
+     */
     private String suffix;
 
     /**
-    * 大小|字节B
-    */
+     * 大小|字节B
+     */
     private Integer size;
 
     /**
-    * 用途|枚举[FileUseEnum]：COURSE("C", "讲师"), TEACHER("T", "课程")
-    */
+     * 用途|枚举[FileUseEnum]：COURSE("C", "讲师"), TEACHER("T", "课程")
+     */
     private String use;
 
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdAt;
 
     /**
-    * 修改时间
-    */
+     * 修改时间
+     */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedAt;
 
@@ -55,6 +55,11 @@ public class FileDto {
     private Integer shardTotal;
 
     private String key;
+
+    /**
+     * base64
+     */
+    private String shard;
 
     public String getId() {
         return id;
@@ -152,6 +157,14 @@ public class FileDto {
         this.key = key;
     }
 
+    public String getShard() {
+        return shard;
+    }
+
+    public void setShard(String shard) {
+        this.shard = shard;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("FileDto{");
@@ -167,9 +180,9 @@ public class FileDto {
         sb.append(", shardSize=").append(shardSize);
         sb.append(", shardTotal=").append(shardTotal);
         sb.append(", key='").append(key).append('\'');
+        sb.append(", shard='").append(shard).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
 
 }

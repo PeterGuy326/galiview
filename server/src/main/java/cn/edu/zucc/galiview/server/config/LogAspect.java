@@ -31,7 +31,7 @@ public class LogAspect {
     private final static Logger LOG = LoggerFactory.getLogger(LogAspect.class);
 
     /** 定义一个切点 */
-    @Pointcut("execution(public * com.course.*.controller..*Controller.*(..))")
+    @Pointcut("execution(public * cn.edu.zucc.galiview.*.controller..*Controller.*(..))")
     public void controllerPointcut() {}
 
     @Before("controllerPointcut()")
@@ -90,7 +90,7 @@ public class LogAspect {
             arguments[i] = args[i];
         }
         // 排除字段，敏感字段或太长的字段不显示
-        String[] excludeProperties = {};
+        String[] excludeProperties = {"shard"};
         PropertyPreFilters filters = new PropertyPreFilters();
         PropertyPreFilters.MySimplePropertyPreFilter excludefilter = filters.addFilter();
         excludefilter.addExcludes(excludeProperties);
@@ -102,7 +102,7 @@ public class LogAspect {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         // 排除字段，敏感字段或太长的字段不显示
-        String[] excludeProperties = {"password"};
+        String[] excludeProperties = {"password", "shard"};
         PropertyPreFilters filters = new PropertyPreFilters();
         PropertyPreFilters.MySimplePropertyPreFilter excludefilter = filters.addFilter();
         excludefilter.addExcludes(excludeProperties);
