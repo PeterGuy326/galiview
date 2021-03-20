@@ -53,17 +53,17 @@ public class UploadController {
             fullDir.mkdir();
         }
 
-        //String path = dir + File.separator + key + "." + suffix;
+//        String path = dir + File.separator + key + "." + suffix + "." + fileDto.getShardIndex();
         String path = new StringBuffer(dir)
                 .append(File.separator)
                 .append(key)
                 .append(".")
                 .append(suffix)
-                .toString(); // course/6sfSqfOwzmik4A4icMYuUe.mp4
+                .toString(); // course\6sfSqfOwzmik4A4icMYuUe.mp4
         String localPath = new StringBuffer(path)
                 .append(".")
                 .append(fileDto.getShardIndex())
-                .toString();  // course/6sfSqfOwzmik4A4icMYuUe.mp4.1
+                .toString(); // course\6sfSqfOwzmik4A4icMYuUe.mp4.1
         String fullPath = FILE_PATH + localPath;
         File dest = new File(fullPath);
         shard.transferTo(dest);
@@ -85,8 +85,8 @@ public class UploadController {
 
     public void merge(FileDto fileDto) throws Exception {
         LOG.info("合并分片开始");
-        String path = fileDto.getPath(); //http://127.0.0.1:9000/file/f/course/6sfSqfOwzmik4A4icMYuUe.mp4
-        path = path.replace(FILE_DOMAIN, ""); //course/6sfSqfOwzmik4A4icMYuUe.mp4
+        String path = fileDto.getPath(); //http://127.0.0.1:9000/file/f/course\6sfSqfOwzmik4A4icMYuUe.mp4
+        path = path.replace(FILE_DOMAIN, ""); //course\6sfSqfOwzmik4A4icMYuUe.mp4
         Integer shardTotal = fileDto.getShardTotal();
         File newFile = new File(FILE_PATH + path);
         FileOutputStream outputStream = new FileOutputStream(newFile, true);//文件追加写入
@@ -118,6 +118,7 @@ public class UploadController {
         LOG.info("合并分片结束");
 
         System.gc();
+        Thread.sleep(100);
 
         // 删除分片
         LOG.info("删除分片开始");
@@ -135,6 +136,9 @@ public class UploadController {
         LOG.info("检查上传分片开始：{}", key);
         ResponseDto responseDto = new ResponseDto();
         FileDto fileDto = fileService.findByKey(key);
+        if (fileDto != null) {
+            fileDto.setPath(FILE_DOMAIN + fileDto.getPath());
+        }
         responseDto.setContent(fileDto);
         return responseDto;
     }
