@@ -23,6 +23,8 @@ public class Section {
 
     private Date updatedAt;
 
+    private String vod;
+
     public String getId() {
         return id;
     }
@@ -103,6 +105,14 @@ public class Section {
         this.updatedAt = updatedAt;
     }
 
+    public String getVod() {
+        return vod;
+    }
+
+    public void setVod(String vod) {
+        this.vod = vod;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -119,6 +129,7 @@ public class Section {
         sb.append(", sort=").append(sort);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
+        sb.append(", vod=").append(vod);
         sb.append("]");
         return sb.toString();
     }

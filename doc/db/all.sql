@@ -188,11 +188,14 @@ CREATE TABLE `section`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='小节';
 
+ALTER TABLE `section` ADD COLUMN (
+  `vod` CHAR(32) COMMENT 'VOD|阿里云VOD'
+);
+
 INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
 VALUES ('00000001', '测试小节01', '00000001', '00000000', '', 500, 'F', 1, now(), now());
 
-#
-课程分类
+#课程分类
 drop table if exists `course_category`;
 create table `course_category`
 (
@@ -203,8 +206,7 @@ create table `course_category`
 ) engine = innodb
   default charset = utf8mb4 comment ='课程分类';
 
-#
-课程内容
+#课程内容
 drop table if exists `course_content`;
 create table `course_content`
 (
@@ -265,8 +267,7 @@ alter table `file` add column (`shard_total` int comment '分片总数');
 alter table `file` add column (`key` varchar(32) comment '文件标识');
 alter table `file` add unique key key_unique (`key`);
 
-############################
-测试
+#测试
 drop table if exists `test`;
 create table `test`
 (

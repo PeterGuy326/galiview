@@ -456,62 +456,62 @@ public class SectionExample {
         }
 
         public Criteria andTimeIsNull() {
-            addCriterion("time is null");
+            addCriterion("`time` is null");
             return (Criteria) this;
         }
 
         public Criteria andTimeIsNotNull() {
-            addCriterion("time is not null");
+            addCriterion("`time` is not null");
             return (Criteria) this;
         }
 
         public Criteria andTimeEqualTo(Integer value) {
-            addCriterion("time =", value, "time");
+            addCriterion("`time` =", value, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeNotEqualTo(Integer value) {
-            addCriterion("time <>", value, "time");
+            addCriterion("`time` <>", value, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeGreaterThan(Integer value) {
-            addCriterion("time >", value, "time");
+            addCriterion("`time` >", value, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("time >=", value, "time");
+            addCriterion("`time` >=", value, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeLessThan(Integer value) {
-            addCriterion("time <", value, "time");
+            addCriterion("`time` <", value, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeLessThanOrEqualTo(Integer value) {
-            addCriterion("time <=", value, "time");
+            addCriterion("`time` <=", value, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeIn(List<Integer> values) {
-            addCriterion("time in", values, "time");
+            addCriterion("`time` in", values, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeNotIn(List<Integer> values) {
-            addCriterion("time not in", values, "time");
+            addCriterion("`time` not in", values, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeBetween(Integer value1, Integer value2) {
-            addCriterion("time between", value1, value2, "time");
+            addCriterion("`time` between", value1, value2, "time");
             return (Criteria) this;
         }
 
         public Criteria andTimeNotBetween(Integer value1, Integer value2) {
-            addCriterion("time not between", value1, value2, "time");
+            addCriterion("`time` not between", value1, value2, "time");
             return (Criteria) this;
         }
 
@@ -762,6 +762,76 @@ public class SectionExample {
 
         public Criteria andUpdatedAtNotBetween(Date value1, Date value2) {
             addCriterion("updated_at not between", value1, value2, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodIsNull() {
+            addCriterion("vod is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodIsNotNull() {
+            addCriterion("vod is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodEqualTo(String value) {
+            addCriterion("vod =", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotEqualTo(String value) {
+            addCriterion("vod <>", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodGreaterThan(String value) {
+            addCriterion("vod >", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodGreaterThanOrEqualTo(String value) {
+            addCriterion("vod >=", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodLessThan(String value) {
+            addCriterion("vod <", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodLessThanOrEqualTo(String value) {
+            addCriterion("vod <=", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodLike(String value) {
+            addCriterion("vod like", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotLike(String value) {
+            addCriterion("vod not like", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodIn(List<String> values) {
+            addCriterion("vod in", values, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotIn(List<String> values) {
+            addCriterion("vod not in", values, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodBetween(String value1, String value2) {
+            addCriterion("vod between", value1, value2, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotBetween(String value1, String value2) {
+            addCriterion("vod not between", value1, value2, "vod");
             return (Criteria) this;
         }
     }
