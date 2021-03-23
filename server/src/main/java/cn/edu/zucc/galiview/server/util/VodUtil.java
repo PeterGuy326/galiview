@@ -79,7 +79,16 @@ public class VodUtil {
         String bucketName = uploadAddress.getString("Bucket");
         String objectName = uploadAddress.getString("FileName");
         File file = new File(localFile);
+        // 单文件上传
         ossClient.putObject(bucketName, objectName, file);
+
+        /* 视频点播不支持追加上传
+        // 追加上传
+        ObjectMetadata meta = new ObjectMetadata();
+        meta.setContentType("text/plain");
+        AppendObjectRequest request = new AppendObjectRequest(bucketName, objectName, file, meta);
+        request.setPosition(0L);
+        ossClient.appendObject(request);*/
     }
 
     /**
