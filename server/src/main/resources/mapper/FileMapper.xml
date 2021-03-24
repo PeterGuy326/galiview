@@ -14,6 +14,7 @@
     <result column="shard_size" jdbcType="INTEGER" property="shardSize" />
     <result column="shard_total" jdbcType="INTEGER" property="shardTotal" />
     <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="vod" jdbcType="CHAR" property="vod" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, `path`, `name`, suffix, `size`, `use`, created_at, updated_at, shard_index, shard_size, 
-    shard_total, `key`
+    shard_total, `key`, vod
   </sql>
   <select id="selectByExample" parameterType="cn.edu.zucc.galiview.server.domain.FileExample" resultMap="BaseResultMap">
     select
@@ -111,11 +112,11 @@
     insert into file (id, `path`, `name`, 
       suffix, `size`, `use`, created_at, 
       updated_at, shard_index, shard_size, 
-      shard_total, `key`)
+      shard_total, `key`, vod)
     values (#{id,jdbcType=CHAR}, #{path,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{suffix,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{use,jdbcType=CHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedAt,jdbcType=TIMESTAMP}, #{shardIndex,jdbcType=INTEGER}, #{shardSize,jdbcType=INTEGER}, 
-      #{shardTotal,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR})
+      #{shardTotal,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{vod,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.zucc.galiview.server.domain.File">
     insert into file
@@ -156,6 +157,9 @@
       <if test="key != null">
         `key`,
       </if>
+      <if test="vod != null">
+        vod,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -193,6 +197,9 @@
       </if>
       <if test="key != null">
         #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="vod != null">
+        #{vod,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -241,6 +248,9 @@
       <if test="record.key != null">
         `key` = #{record.key,jdbcType=VARCHAR},
       </if>
+      <if test="record.vod != null">
+        vod = #{record.vod,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -259,7 +269,8 @@
       shard_index = #{record.shardIndex,jdbcType=INTEGER},
       shard_size = #{record.shardSize,jdbcType=INTEGER},
       shard_total = #{record.shardTotal,jdbcType=INTEGER},
-      `key` = #{record.key,jdbcType=VARCHAR}
+      `key` = #{record.key,jdbcType=VARCHAR},
+      vod = #{record.vod,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -300,6 +311,9 @@
       <if test="key != null">
         `key` = #{key,jdbcType=VARCHAR},
       </if>
+      <if test="vod != null">
+        vod = #{vod,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -315,7 +329,8 @@
       shard_index = #{shardIndex,jdbcType=INTEGER},
       shard_size = #{shardSize,jdbcType=INTEGER},
       shard_total = #{shardTotal,jdbcType=INTEGER},
-      `key` = #{key,jdbcType=VARCHAR}
+      `key` = #{key,jdbcType=VARCHAR},
+      vod = #{vod,jdbcType=CHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

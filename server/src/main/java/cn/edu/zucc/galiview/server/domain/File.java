@@ -27,6 +27,8 @@ public class File {
 
     private String key;
 
+    private String vod;
+
     public String getId() {
         return id;
     }
@@ -123,6 +125,14 @@ public class File {
         this.key = key;
     }
 
+    public String getVod() {
+        return vod;
+    }
+
+    public void setVod(String vod) {
+        this.vod = vod;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -141,6 +151,7 @@ public class File {
         sb.append(", shardSize=").append(shardSize);
         sb.append(", shardTotal=").append(shardTotal);
         sb.append(", key=").append(key);
+        sb.append(", vod=").append(vod);
         sb.append("]");
         return sb.toString();
     }

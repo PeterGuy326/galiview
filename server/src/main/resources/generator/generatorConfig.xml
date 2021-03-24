@@ -41,13 +41,13 @@
 
 <!--        <table tableName="test" domainObjectName="Test"/>-->
 <!--        <table tableName="chapter" domainObjectName="Chapter"/>-->
-        <table tableName="section" domainObjectName="Section"/>
+<!--        <table tableName="section" domainObjectName="Section"/>-->
 <!--        <table tableName="course" domainObjectName="Course"/>-->
 <!--        <table tableName="category" domainObjectName="Category"/>-->
 <!--        <table tableName="course_category" domainObjectName="CourseCategory"/>-->
 <!--        <table tableName="course_content" domainObjectName="CourseContent"/>-->
 <!--        <table tableName="teacher" domainObjectName="Teacher"/>-->
-<!--        <table tableName="file" domainObjectName="File"/>-->
+        <table tableName="file" domainObjectName="File"/>
 <!--        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>-->
     </context>
 </generatorConfiguration>

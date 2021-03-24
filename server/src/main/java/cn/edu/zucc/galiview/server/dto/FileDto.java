@@ -61,6 +61,8 @@ public class FileDto {
      */
     private String shard;
 
+    private String vod;
+
     public String getId() {
         return id;
     }
@@ -165,6 +167,14 @@ public class FileDto {
         this.shard = shard;
     }
 
+    public String getVod() {
+        return vod;
+    }
+
+    public void setVod(String vod) {
+        this.vod = vod;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("FileDto{");
@@ -181,8 +191,8 @@ public class FileDto {
         sb.append(", shardTotal=").append(shardTotal);
         sb.append(", key='").append(key).append('\'');
         sb.append(", shard='").append(shard).append('\'');
+        sb.append(", vod='").append(vod).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
 }

@@ -884,6 +884,76 @@ public class FileExample {
             addCriterion("`key` not between", value1, value2, "key");
             return (Criteria) this;
         }
+
+        public Criteria andVodIsNull() {
+            addCriterion("vod is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodIsNotNull() {
+            addCriterion("vod is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodEqualTo(String value) {
+            addCriterion("vod =", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotEqualTo(String value) {
+            addCriterion("vod <>", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodGreaterThan(String value) {
+            addCriterion("vod >", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodGreaterThanOrEqualTo(String value) {
+            addCriterion("vod >=", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodLessThan(String value) {
+            addCriterion("vod <", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodLessThanOrEqualTo(String value) {
+            addCriterion("vod <=", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodLike(String value) {
+            addCriterion("vod like", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotLike(String value) {
+            addCriterion("vod not like", value, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodIn(List<String> values) {
+            addCriterion("vod in", values, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotIn(List<String> values) {
+            addCriterion("vod not in", values, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodBetween(String value1, String value2) {
+            addCriterion("vod between", value1, value2, "vod");
+            return (Criteria) this;
+        }
+
+        public Criteria andVodNotBetween(String value1, String value2) {
+            addCriterion("vod not between", value1, value2, "vod");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
