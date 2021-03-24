@@ -29,19 +29,19 @@ public class OssController {
 
     private static final Logger LOG = LoggerFactory.getLogger(FileController.class);
 
-    @Value("${accessKeyId}")
+    @Value("${oss.accessKeyId}")
     private String accessKeyId;
 
-    @Value("${accessKeySecret}")
+    @Value("${oss.accessKeySecret}")
     private String accessKeySecret;
 
-    @Value("${endpoint}")
+    @Value("${oss.endpoint}")
     private String endpoint;
 
-    @Value("${bucket}")
+    @Value("${oss.bucket}")
     private String bucket;
 
-    @Value("${ossDomain}")
+    @Value("${oss.domain}")
     private String ossDomain;
 
     public static final String BUSINESS_NAME = "文件上传";
