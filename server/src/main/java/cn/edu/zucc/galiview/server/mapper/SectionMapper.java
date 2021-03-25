@@ -2,9 +2,8 @@ package cn.edu.zucc.galiview.server.mapper;
 
 import cn.edu.zucc.galiview.server.domain.Section;
 import cn.edu.zucc.galiview.server.domain.SectionExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface SectionMapper {
     long countByExample(SectionExample example);

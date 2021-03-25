@@ -43,8 +43,8 @@ public class VodUtil {
         //request.setDescription("this is desc");
         //request.setTags("tag1,tag2");
 //        request.setCoverURL("http://vod.aliyun.com/test_cover_url.jpg");
-        request.setCateId(1000115308L);
-        request.setTemplateGroupId("78fffb8c0c2426efd5baaaafed76fe36");
+        request.setCateId(1000284234L);
+        request.setTemplateGroupId("3b8ddd7cafcd678b87b694a7501a857e");
         //request.setWorkflowId("");
         //request.setStorageLocation("");
         //request.setAppId("app-1000000");
@@ -88,6 +88,7 @@ public class VodUtil {
         request.setPosition(0L);
         ossClient.appendObject(request);*/
     }
+
 
     /**
      * 上传本地文件
@@ -141,11 +142,23 @@ public class VodUtil {
         return client.getAcsResponse(request);
     }
 
+    /**
+     * 获取播放凭证函数
+     * @param client
+     * @return
+     * @throws Exception
+     */
+    public static GetVideoPlayAuthResponse getVideoPlayAuth(DefaultAcsClient client, String videoId) throws Exception {
+        GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+        request.setVideoId(videoId);
+        return client.getAcsResponse(request);
+    }
+
     public static void main(String[] argv) {
         //您的AccessKeyId
-        String accessKeyId = "LTAI4FnmXZVs9Pufn8kt2whV";
+        String accessKeyId = "LTAI5tMrZy2hCEE6bNRyz9Wp";
         //您的AccessKeySecret
-        String accessKeySecret = "yQqZJ0WGnyAxaT9Gy1mKIJXY68F6A6";
+        String accessKeySecret = "zCWSH1Nc2GO0EJCZnCxsP2rTeAAZiA";
         //需要上传到VOD的本地视频文件的完整路径，需要包含文件扩展名
         String localFile = "/Users/huyizhou/zucc/galiview/admin/public/static/image/小节视频/test1.mp4";
         try {

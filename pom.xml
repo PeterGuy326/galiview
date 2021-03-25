@@ -96,6 +96,7 @@
 				<artifactId>aliyun-java-sdk-core</artifactId>
 				<version>4.3.3</version>
 			</dependency>
+
 			<dependency>
 				<groupId>com.aliyun</groupId>
 				<artifactId>aliyun-java-sdk-vod</artifactId>
