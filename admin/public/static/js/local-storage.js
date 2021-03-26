@@ -1,3 +1,5 @@
+LOCAL_KEY_REMEMBER_USER = "LOCAL_KEY_REMEMBER_USER"; // 课程管理页面点击章管理时，保存课程信息
+
 LocalStorage = {
     get: function (key) {
         let v = localStorage.getItem(key);
