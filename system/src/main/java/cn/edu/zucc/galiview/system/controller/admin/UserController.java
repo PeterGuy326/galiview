@@ -1,5 +1,6 @@
 package cn.edu.zucc.galiview.system.controller.admin;
 
+import cn.edu.zucc.galiview.server.dto.LoginUserDto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
 import cn.edu.zucc.galiview.server.dto.UserDto;
@@ -70,6 +71,18 @@ public class UserController {
         ResponseDto responseDto = new ResponseDto();
         userService.savePassword(userDto);
         responseDto.setContent(userDto);
+        return responseDto;
+    }
+
+    /**
+     * 登陆
+     */
+    @PostMapping("/login")
+    public ResponseDto login(@RequestBody UserDto userDto) {
+        userDto.setPassword(DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes()));
+        ResponseDto responseDto = new ResponseDto();
+        LoginUserDto loginUserDto = userService.login(userDto);
+        responseDto.setContent(loginUserDto);
         return responseDto;
     }
 }
