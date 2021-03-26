@@ -1,9 +1,6 @@
 package cn.edu.zucc.galiview.system.controller.admin;
 
-import cn.edu.zucc.galiview.server.dto.LoginUserDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
-import cn.edu.zucc.galiview.server.dto.ResponseDto;
-import cn.edu.zucc.galiview.server.dto.UserDto;
+import cn.edu.zucc.galiview.server.dto.*;
 import cn.edu.zucc.galiview.server.service.UserService;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
 import org.slf4j.Logger;
@@ -12,6 +9,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -75,14 +73,25 @@ public class UserController {
     }
 
     /**
-     * 登陆
+     * 重置密码
      */
     @PostMapping("/login")
-    public ResponseDto login(@RequestBody UserDto userDto) {
+    public ResponseDto login(@RequestBody UserDto userDto, HttpServletRequest request) {
         userDto.setPassword(DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes()));
         ResponseDto responseDto = new ResponseDto();
         LoginUserDto loginUserDto = userService.login(userDto);
+        request.getSession().setAttribute(Constants.LOGIN_USER, loginUserDto);
         responseDto.setContent(loginUserDto);
+        return responseDto;
+    }
+
+    /**
+     * 退出登录
+     */
+    @GetMapping("/logout")
+    public ResponseDto logout(HttpServletRequest request) {
+        ResponseDto responseDto = new ResponseDto();
+        request.getSession().removeAttribute(Constants.LOGIN_USER);
         return responseDto;
     }
 }
