@@ -6,6 +6,7 @@ import cn.edu.zucc.galiview.server.util.ValidatorUtil;
 import com.aliyuncs.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,9 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private RedisTemplate redisTemplate;
 
     /**
      * 列表查询
@@ -84,7 +88,9 @@ public class UserController {
         ResponseDto responseDto = new ResponseDto();
 
         // 根据验证码token去获取缓存中的验证码，和用户输入的验证码是否一致
-        String imageCode = (String) request.getSession().getAttribute(userDto.getImageCodeToken());
+        // String imageCode = (String) request.getSession().getAttribute(userDto.getImageCodeToken());
+        String imageCode = (String) redisTemplate.opsForValue().get(userDto.getImageCodeToken());
+        LOG.info("从redis中获取到的验证码：{}", imageCode);
         if (StringUtils.isEmpty(imageCode)) {
             responseDto.setSuccess(false);
             responseDto.setMessage("验证码已过期");
