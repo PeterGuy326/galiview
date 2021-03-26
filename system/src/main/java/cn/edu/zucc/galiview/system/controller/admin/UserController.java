@@ -2,7 +2,9 @@ package cn.edu.zucc.galiview.system.controller.admin;
 
 import cn.edu.zucc.galiview.server.dto.*;
 import cn.edu.zucc.galiview.server.service.UserService;
+import cn.edu.zucc.galiview.server.util.UuidUtil;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
+import com.alibaba.fastjson.JSON;
 import com.aliyuncs.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -104,11 +107,15 @@ public class UserController {
             return responseDto;
         } else {
             // 验证通过后，移除验证码
-            request.getSession().removeAttribute(userDto.getImageCodeToken());
+            // request.getSession().removeAttribute(userDto.getImageCodeToken());
+            redisTemplate.delete(userDto.getImageCodeToken());
         }
 
         LoginUserDto loginUserDto = userService.login(userDto);
-        request.getSession().setAttribute(Constants.LOGIN_USER, loginUserDto);
+        String token = UuidUtil.getShortUuid();
+        loginUserDto.setToken(token);
+        //request.getSession().setAttribute(Constants.LOGIN_USER, loginUserDto);
+        redisTemplate.opsForValue().set(token, JSON.toJSONString(loginUserDto), 3600, TimeUnit.SECONDS);
         responseDto.setContent(loginUserDto);
         return responseDto;
     }
@@ -116,10 +123,12 @@ public class UserController {
     /**
      * 退出登录
      */
-    @GetMapping("/logout")
-    public ResponseDto logout(HttpServletRequest request) {
+    @GetMapping("/logout/{token}")
+    public ResponseDto logout(@PathVariable String token) {
         ResponseDto responseDto = new ResponseDto();
-        request.getSession().removeAttribute(Constants.LOGIN_USER);
+        // request.getSession().removeAttribute(Constants.LOGIN_USER);
+        redisTemplate.delete(token);
+        LOG.info("从redis中删除token:{}", token);
         return responseDto;
     }
 }
