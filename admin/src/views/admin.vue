@@ -378,11 +378,11 @@
                 <b class="arrow"></b>
               </li>
 
-              <li class="">
-                <a href="jqgrid.html">
+              <li class="" id="system-resource-sidebar">
+                <router-link to="/system/resource">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  权限管理
-                </a>
+                  资源管理
+                </router-link>
 
                 <b class="arrow"></b>
               </li>
