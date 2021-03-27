@@ -1,4 +1,4 @@
-LOCAL_KEY_REMEMBER_USER = "LOCAL_KEY_REMEMBER_USER"; // 课程管理页面点击章管理时，保存课程信息
+LOCAL_KEY_REMEMBER_USER = "LOCAL_KEY_REMEMBER_USER"; // 记住我
 
 LocalStorage = {
     get: function (key) {
