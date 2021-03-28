@@ -18,4 +18,30 @@
       {"id": "010301", "name": "角色/权限管理", "request": ["/system/admin/role"]}
     ]
   }]
+}, {
+  "id": "02", "name": "业务管理",
+  "children": [{
+    "id": "0201", "name": "分类管理", "page": "/business/category",
+    "children": [
+      {"id": "020101", "name": "增册改查", "request": ["/business/admin/category"]}
+    ]
+  }, {
+    "id": "0202", "name": "课程管理", "page": "/business/course",
+    "children": [
+      {"id": "020201", "name": "增册改查", "request": ["/business/admin/course", "/business/admin/category/all"]}
+    ]
+  }, {
+    "id": "0203", "name": "讲师管理", "page": "/business/teacher",
+    "children": [
+      {"id": "020301", "name": "增册改查", "request": ["/business/admin/teacher"]}
+    ]
+  }]
+}, {
+  "id": "03", "name": "文件管理",
+  "children": [{
+    "id": "0301", "name": "文件管理", "page": "/file/file",
+    "children": [
+      {"id": "030101", "name": "文件管理", "request": ["/file/admin/file"]}
+    ]
+  }]
 }]

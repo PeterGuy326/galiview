@@ -188,9 +188,10 @@ CREATE TABLE `section`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='小节';
 
-ALTER TABLE `section` ADD COLUMN (
-  `vod` CHAR(32) COMMENT 'VOD|阿里云VOD'
-);
+ALTER TABLE `section`
+    ADD COLUMN (
+        `vod` CHAR(32) COMMENT 'VOD|阿里云VOD'
+        );
 
 INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
 VALUES ('00000001', '测试小节01', '00000001', '00000000', '', 500, 'F', 1, now(), now());
@@ -226,7 +227,8 @@ create table `course_content_file`
     `name`      varchar(100) comment '文件名',
     `size`      int comment '大小|字节b',
     primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='课程内容文件';
+) engine = innodb
+  default charset = utf8mb4 comment ='课程内容文件';
 
 
 -- 讲师
@@ -261,13 +263,18 @@ create table `file`
 ) engine = innodb
   default charset = utf8mb4 comment ='文件';
 
-alter table `file` add column (`shard_index` int comment '已上传分片');
-alter table `file` add column (`shard_size` int comment '分片大小|B');
-alter table `file` add column (`shard_total` int comment '分片总数');
-alter table `file` add column (`key` varchar(32) comment '文件标识');
+alter table `file`
+    add column (`shard_index` int comment '已上传分片');
+alter table `file`
+    add column (`shard_size` int comment '分片大小|B');
+alter table `file`
+    add column (`shard_total` int comment '分片总数');
+alter table `file`
+    add column (`key` varchar(32) comment '文件标识');
 alter table `file`
     add unique key key_unique (`key`);
-alter table `file` add column (`vod` char(32) comment 'vod|阿里云vod');
+alter table `file`
+    add column (`vod` char(32) comment 'vod|阿里云vod');
 
 drop table if exists `user`;
 create table `user`
@@ -278,7 +285,8 @@ create table `user`
     `password`   char(32)    not null comment '密码',
     primary key (`id`),
     unique key `login_name_unique` (`login_name`)
-) engine=innodb default charset=utf8mb4 comment='用户';
+) engine = innodb
+  default charset = utf8mb4 comment ='用户';
 
 insert into `user` (id, login_name, name, password)
 values ('10000000', 'test', '测试', '202cb962ac59075b964b07152d234b70');
@@ -289,11 +297,12 @@ create table `resource`
 (
     `id`      char(6)      not null default '' comment 'id',
     `name`    varchar(100) not null comment '名称|菜单或按钮',
-    `page`    varchar(50) null comment '页面|路由',
+    `page`    varchar(50)  null comment '页面|路由',
     `request` varchar(200) null comment '请求|接口',
     `parent`  char(6) comment '父id',
     primary key (`id`)
-) engine=innodb default charset=utf8 comment='资源';
+) engine = innodb
+  default charset = utf8mb4 comment ='资源';
 
 insert into `resource`
 values ('01', '系统管理', null, null, null);
@@ -313,6 +322,23 @@ insert into `resource`
 values ('0103', '角色管理', '/system/role', null, '01');
 insert into `resource`
 values ('010301', '角色/权限管理', null, '["/system/admin/role"]', '0103');
+
+drop table if exists `role`;
+create table `role`
+(
+    `id`   char(8)      not null default '' comment 'id',
+    `name` varchar(50)  not null comment '角色',
+    `desc` varchar(100) not null comment '描述',
+    primary key (`id`)
+) engine = innodb
+  default charset = utf8mb4 comment ='角色';
+
+insert into `role`
+values ('00000000', '系统管理员', '管理用户、角色权限');
+insert into `role`
+values ('00000001', '开发', '维护资源');
+insert into `role`
+values ('00000002', '业务管理员', '负责业务管理');
 
 #测试
 drop table if exists `test`;
