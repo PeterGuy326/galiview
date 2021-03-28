@@ -15,7 +15,7 @@
     <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
 
     <div class="row">
-      <div v-for="teacher in teachers" class="col-md-3 center">
+      <div v-for="teacher in teachers" class="col-md-3">
         <div>
           <span class="profile-picture">
             <img v-show="!teacher.image" class="editable img-responsive editable-click editable-empty" src="/static/image/讲师头像/头像1.jpg" v-bind:title="teacher.intro"/>
@@ -37,10 +37,12 @@
 
         <div class="space-6"></div>
 
-        <a href="javascript:;" class="text-info bigger-110" v-bind:title="teacher.motto">
-          <i class="ace-icon fa fa-user"></i>
-          {{teacher.name}}【{{teacher.nickname}}】
-        </a>
+        <div class="text-center">
+          <a href="javascript:;" class="text-info bigger-110" v-bind:title="teacher.motto">
+            <i class="ace-icon fa fa-user"></i>
+            {{teacher.name}}【{{teacher.nickname}}】
+          </a>
+        </div>
 
         <div class="space-6"></div>
 
@@ -127,9 +129,10 @@
 
 <script>
 import Pagination from "../../components/pagination";
+import File from "../../components/file";
 import BigFile from "../../components/big-file";
 export default {
-  components: {Pagination, BigFile},
+  components: {Pagination, File, BigFile},
   name: "business-teacher",
   data: function() {
     return {
