@@ -12,9 +12,8 @@ public class LoginAdminGatewayFilterFactory extends AbstractGatewayFilterFactory
     @Resource
     LoginAdminGatewayFilter loginAdminGatewayFilter;
 
-    @Resource
+    @Override
     public GatewayFilter apply(Object config) {
         return loginAdminGatewayFilter;
     }
-
 }
