@@ -26,9 +26,9 @@
 
       <tbody>
       <tr v-for="role in roles">
-        <td>{{role.id}}</td>
-        <td>{{role.name}}</td>
-        <td>{{role.desc}}</td>
+        <td>{{ role.id }}</td>
+        <td>{{ role.name }}</td>
+        <td>{{ role.desc }}</td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">
             <button v-on:click="editResource(role)" class="btn btn-xs btn-info">
@@ -50,7 +50,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">表单</h4>
           </div>
           <div class="modal-body">
@@ -82,7 +83,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">角色资源关联配置</h4>
           </div>
           <div class="modal-body">
@@ -106,10 +108,11 @@
 
 <script>
 import Pagination from "../../components/pagination";
+
 export default {
   components: {Pagination},
   name: "system-role",
-  data: function() {
+  data: function () {
     return {
       role: {},
       roles: [],
@@ -117,7 +120,7 @@ export default {
       zTree: {},
     }
   },
-  mounted: function() {
+  mounted: function () {
     let _this = this;
     _this.$refs.pagination.size = 5;
     _this.list(1);
@@ -153,7 +156,7 @@ export default {
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/role/list', {
         page: page,
         size: _this.$refs.pagination.size,
-      }).then((response)=>{
+      }).then((response) => {
         Loading.hide();
         let resp = response.data;
         _this.roles = resp.content.list;
@@ -179,7 +182,7 @@ export default {
       }
 
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/role/save', _this.role).then((response)=>{
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/role/save', _this.role).then((response) => {
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
@@ -199,7 +202,7 @@ export default {
       let _this = this;
       Confirm.show("删除角色后不可恢复，确认删除？", function () {
         Loading.show();
-        _this.$ajax.delete(process.env.VUE_APP_SERVER + '/system/admin/role/delete/' + id).then((response)=>{
+        _this.$ajax.delete(process.env.VUE_APP_SERVER + '/system/admin/role/delete/' + id).then((response) => {
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
@@ -226,7 +229,7 @@ export default {
     loadResource() {
       let _this = this;
       Loading.show();
-      _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/resource/load-tree').then((res)=>{
+      _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/resource/load-tree').then((res) => {
         Loading.hide();
         let response = res.data;
         _this.resources = response.content;
@@ -256,6 +259,33 @@ export default {
 
       _this.zTree = $.fn.zTree.init($("#tree"), setting, _this.resources);
       _this.zTree.expandAll(true);
+    },
+
+    /**
+     * 资源模态框点击【保存】
+     */
+    saveResource() {
+      let _this = this;
+      let resources = _this.zTree.getCheckedNodes();
+      console.log("勾选的资源：", resources);
+
+      // 保存时，只需要保存资源id，所以使用id数组进行参数传递
+      let resourceIds = [];
+      for (let i = 0; i < resources.length; i++) {
+        resourceIds.push(resources[i].id);
+      }
+
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/role/save-resource', {
+        id: _this.role.id,
+        resourceIds: resourceIds
+      }).then((response) => {
+        let resp = response.data;
+        if (resp.success) {
+          Toast.success("保存成功!");
+        } else {
+          Toast.warning(resp.message);
+        }
+      });
     },
   }
 }
