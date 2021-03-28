@@ -1,13 +1,11 @@
 package cn.edu.zucc.galiview.server.service;
 
-import cn.edu.zucc.galiview.server.domain.Role;
-import cn.edu.zucc.galiview.server.domain.RoleExample;
-import cn.edu.zucc.galiview.server.domain.RoleResource;
-import cn.edu.zucc.galiview.server.domain.RoleResourceExample;
+import cn.edu.zucc.galiview.server.domain.*;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.dto.RoleDto;
 import cn.edu.zucc.galiview.server.mapper.RoleMapper;
 import cn.edu.zucc.galiview.server.mapper.RoleResourceMapper;
+import cn.edu.zucc.galiview.server.mapper.RoleUserMapper;
 import cn.edu.zucc.galiview.server.util.CopyUtil;
 import cn.edu.zucc.galiview.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
@@ -28,9 +26,12 @@ public class RoleService {
     @Resource
     private RoleResourceMapper roleResourceMapper;
 
+    @Resource
+    private RoleUserMapper roleUserMapper;
+
     /**
-    * 列表查询
-    */
+     * 列表查询
+     */
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         RoleExample roleExample = new RoleExample();
@@ -42,38 +43,40 @@ public class RoleService {
     }
 
     /**
-    * 保存，id有值时更新，无值时新增
-    */
+     * 保存，id有值时更新，无值时新增
+     */
     public void save(RoleDto roleDto) {
         Role role = CopyUtil.copy(roleDto, Role.class);
         if (StringUtils.isEmpty(roleDto.getId())) {
-        this.insert(role);
-    } else {
-        this.update(role);
+            this.insert(role);
+        } else {
+            this.update(role);
         }
     }
 
     /**
-    * 新增
-    */
+     * 新增
+     */
     private void insert(Role role) {
         role.setId(UuidUtil.getShortUuid());
         roleMapper.insert(role);
     }
 
     /**
-    * 更新
-    */
+     * 更新
+     */
     private void update(Role role) {
         roleMapper.updateByPrimaryKey(role);
     }
 
     /**
-    * 删除
-    */
+     * 删除
+     */
     public void delete(String id) {
         roleMapper.deleteByPrimaryKey(id);
     }
+
+
 
     /**
      * 按角色保存资源
@@ -109,5 +112,26 @@ public class RoleService {
             resourceIdList.add(roleResourceList.get(i).getResourceId());
         }
         return resourceIdList;
+    }
+
+    /**
+     * 按角色保存用户
+     */
+    public void saveUser(RoleDto roleDto) {
+        String roleId = roleDto.getId();
+        List<String> userIdList = roleDto.getUserIds();
+        // 清空库中所有的当前角色下的记录
+        RoleUserExample example = new RoleUserExample();
+        example.createCriteria().andRoleIdEqualTo(roleId);
+        roleUserMapper.deleteByExample(example);
+
+        // 保存角色用户
+        for (int i = 0; i < userIdList.size(); i++) {
+            RoleUser roleUser = new RoleUser();
+            roleUser.setId(UuidUtil.getShortUuid());
+            roleUser.setRoleId(roleId);
+            roleUser.setUserId(userIdList.get(i));
+            roleUserMapper.insert(roleUser);
+        }
     }
 }
