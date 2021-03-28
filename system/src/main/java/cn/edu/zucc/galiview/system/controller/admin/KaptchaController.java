@@ -28,7 +28,7 @@ public class KaptchaController {
     DefaultKaptcha defaultKaptcha;
 
     @Resource
-    public RedisTemplate redisTEmplate;
+    public RedisTemplate redisTemplate;
 
     @GetMapping("/image-code/{imageCodeToken}")
     public void imageCode(@PathVariable(value = "imageCodeToken") String imageCodeToken, HttpServletRequest request, HttpServletResponse httpServletResponse) throws Exception{
@@ -40,7 +40,7 @@ public class KaptchaController {
             // 将生成的验证码放入会话缓存中，后续验证的时候用到
             // request.getSession().setAttribute(imageCodeToken, createText);
             // 将生成的验证码放入redis缓存中，后续验证的时候用到
-            redisTEmplate.opsForValue().set(imageCodeToken, createText, 300, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set(imageCodeToken, createText, 300, TimeUnit.SECONDS);
 
             // 使用验证码字符串生成验证码图片
             BufferedImage challenge = defaultKaptcha.createImage(createText);
