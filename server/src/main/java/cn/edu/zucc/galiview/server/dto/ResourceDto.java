@@ -1,6 +1,8 @@
 package cn.edu.zucc.galiview.server.dto;
 
 
+import java.util.List;
+
 public class ResourceDto {
 
     /**
@@ -27,6 +29,8 @@ public class ResourceDto {
     * 父id
     */
     private String parent;
+
+    private List<ResourceDto> children;
 
     public String getId() {
         return id;
@@ -68,19 +72,24 @@ public class ResourceDto {
         this.parent = parent;
     }
 
+    public List<ResourceDto> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<ResourceDto> children) {
+        this.children = children;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", page=").append(page);
-        sb.append(", request=").append(request);
-        sb.append(", parent=").append(parent);
-        sb.append("]");
+        final StringBuffer sb = new StringBuffer("ResourceDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", page='").append(page).append('\'');
+        sb.append(", request='").append(request).append('\'');
+        sb.append(", parent='").append(parent).append('\'');
+        sb.append(", children=").append(children);
+        sb.append('}');
         return sb.toString();
     }
 
