@@ -1,6 +1,7 @@
 package cn.edu.zucc.galiview.system.controller.admin;
 
 import cn.edu.zucc.galiview.server.dto.PageDto;
+import cn.edu.zucc.galiview.server.dto.ResourceDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
 import cn.edu.zucc.galiview.server.service.ResourceService;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/resource")
@@ -51,6 +53,17 @@ public class ResourceController {
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();
         resourceService.delete(id);
+        return responseDto;
+    }
+
+    /**
+     * 资源树查询
+     */
+    @GetMapping("/load-tree")
+    public ResponseDto loadTree() {
+        ResponseDto responseDto = new ResponseDto();
+        List<ResourceDto> resourceDtoList = resourceService.loadTree();
+        responseDto.setContent(resourceDtoList);
         return responseDto;
     }
 }
