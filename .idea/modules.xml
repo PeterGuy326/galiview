@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/file/file.iml" filepath="$PROJECT_DIR$/file/file.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/galiview.iml" filepath="$PROJECT_DIR$/.idea/galiview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/galiview.iml" filepath="$PROJECT_DIR$/galiview.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/generator/generator.iml" filepath="$PROJECT_DIR$/generator/generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
