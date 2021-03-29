@@ -398,7 +398,7 @@
             </ul>
           </li>
 
-          <li class="">
+          <li v-show="hasResource('02')" class="">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
               <span class="menu-text"> 业务管理 </span>
@@ -409,7 +409,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-              <li class="" id="business-category-sidebar">
+              <li v-show="hasResource('0201')" class="" id="business-category-sidebar">
                 <router-link to="/business/category">
                   <i class="menu-icon fa fa-caret-right"></i>
                   分类管理
@@ -417,7 +417,7 @@
 
                 <b class="arrow"></b>
               </li>
-              <li class="" id="business-course-sidebar">
+              <li v-show="hasResource('0202')" class="" id="business-course-sidebar">
                 <router-link to="/business/course">
                   <i class="menu-icon fa fa-caret-right"></i>
                   课程管理
@@ -425,7 +425,7 @@
 
                 <b class="arrow"></b>
               </li>
-              <li class="" id="business-teacher-sidebar">
+              <li v-show="hasResource('0203')" class="" id="business-teacher-sidebar">
                 <router-link to="/business/teacher">
                   <i class="menu-icon fa fa-caret-right"></i>
                   讲师管理
@@ -437,7 +437,7 @@
             </ul>
           </li>
 
-          <li class="">
+          <li v-show="hasResource('03')" class="">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
               <span class="menu-text"> 文件管理 </span>
@@ -448,7 +448,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-              <li class="" id="file-file-sidebar">
+              <li v-show="hasResource('0301')" class="" id="file-file-sidebar">
                 <router-link to="/file/file">
                   <i class="menu-icon fa fa-caret-right"></i>
                   文件管理
