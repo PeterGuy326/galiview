@@ -16,7 +16,7 @@
           <a href="index.html" class="navbar-brand">
             <small>
               <i class="fa fa-leaf"></i>
-              galiview
+              在线视频课程
             </small>
           </a>
         </div>
@@ -358,7 +358,7 @@
             <b class="arrow"></b>
           </li>
 
-          <li class="">
+          <li v-show="hasResource('01')" class="">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
               <span class="menu-text"> 系统管理 </span>
@@ -369,7 +369,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-              <li class="" id="system-user-sidebar">
+              <li v-show="hasResource('0101')" class="" id="system-user-sidebar">
                 <router-link to="/system/user">
                   <i class="menu-icon fa fa-caret-right"></i>
                   用户管理
@@ -378,7 +378,7 @@
                 <b class="arrow"></b>
               </li>
 
-              <li class="" id="system-resource-sidebar">
+              <li v-show="hasResource('0102')" class="" id="system-resource-sidebar">
                 <router-link to="/system/resource">
                   <i class="menu-icon fa fa-caret-right"></i>
                   资源管理
@@ -387,7 +387,7 @@
                 <b class="arrow"></b>
               </li>
 
-              <li class="" id="system-role-sidebar">
+              <li v-show="hasResource('0103')" class="" id="system-role-sidebar">
                 <router-link to="/system/role">
                   <i class="menu-icon fa fa-caret-right"></i>
                   角色管理
@@ -485,8 +485,8 @@
         <div class="footer-inner">
           <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">galiview</span>
-							动漫游戏分享社区 &copy; 2017-2099
+							<span class="blue bolder">甲蛙</span>
+							在线视频课程 &copy; 2099-2099
 						</span>
 
             &nbsp; &nbsp;
@@ -515,11 +515,9 @@
 </template>
 
 <script>
-
-
 export default {
   name: "admin",
-  data: function () {
+  data: function() {
     return {
       loginUser: {},
     }
@@ -528,6 +526,7 @@ export default {
     let _this = this;
     $("body").removeClass("login-layout light-login");
     $("body").attr("class", "no-skin");
+    // console.log("admin");
     // sidebar激活样式方法二
     _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
 
@@ -537,17 +536,25 @@ export default {
   },
   watch: {
     $route: {
-      handler: function (val, oldVal) {
+      handler:function(val, oldVal){
         // sidebar激活样式方法二
         console.log("---->页面跳转：", val, oldVal);
         let _this = this;
-        _this.$nextTick(function () { // 页面加载完成后执行
+        _this.$nextTick(function(){  //页面加载完成后执行
           _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
         })
       }
     }
   },
   methods: {
+    /**
+     * 查找是否有权限
+     * @param id
+     */
+    hasResource(id) {
+      return Tool.hasResource(id);
+    },
+
     login () {
       this.$router.push("/admin")
     },
@@ -574,7 +581,7 @@ export default {
     logout () {
       let _this = this;
       Loading.show();
-      _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/user/logout' + _this.loginUser.token).then((response)=>{
+      _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/user/logout/' + _this.loginUser.token).then((response)=>{
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
