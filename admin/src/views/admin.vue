@@ -16,7 +16,7 @@
           <a href="index.html" class="navbar-brand">
             <small>
               <i class="fa fa-leaf"></i>
-              在线视频课程
+              在线视频动漫运营社区
             </small>
           </a>
         </div>
@@ -485,8 +485,8 @@
         <div class="footer-inner">
           <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">甲蛙</span>
-							在线视频课程 &copy; 2099-2099
+							<span class="blue bolder">galiview</span>
+							在线视频动漫运营社区 &copy; 2017-2099
 						</span>
 
             &nbsp; &nbsp;
