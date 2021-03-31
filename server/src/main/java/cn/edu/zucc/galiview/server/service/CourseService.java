@@ -7,6 +7,7 @@ import cn.edu.zucc.galiview.server.dto.CourseContentDto;
 import cn.edu.zucc.galiview.server.dto.CourseDto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.dto.SortDto;
+import cn.edu.zucc.galiview.server.enums.CourseStatusEnum;
 import cn.edu.zucc.galiview.server.mapper.CourseContentMapper;
 import cn.edu.zucc.galiview.server.mapper.CourseMapper;
 import cn.edu.zucc.galiview.server.mapper.my.MyCourseMapper;
@@ -53,6 +54,18 @@ public class CourseService {
         pageDto.setTotal(pageInfo.getTotal());
         List<CourseDto> courseDtoList = CopyUtil.copyList(courseList, CourseDto.class);
         pageDto.setList(courseDtoList);
+    }
+
+    /**
+     * 新课列表查询，只查询已发布的，按创建日期倒序
+     */
+    public List<CourseDto> listNew(PageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+        CourseExample courseExample = new CourseExample();
+        courseExample.createCriteria().andStatusEqualTo(CourseStatusEnum.PUBLISH.getCode());
+        courseExample.setOrderByClause("created_at desc");
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        return CopyUtil.copyList(courseList, CourseDto.class);
     }
 
     /**
