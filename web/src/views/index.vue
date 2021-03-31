@@ -3,11 +3,12 @@
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1>Album example1</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1>嘎哩动漫视频</h1>
+        <p class="lead text-muted m-3">
+          希望热爱二次元文化和游戏制作的小朋友们能够在社区里得到自己同伴，有别人没有的资源可以分享出来让大家能够为自己的梦想而奋斗
+        </p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">点击进入社区</a>
         </p>
       </div>
     </section>
