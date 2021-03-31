@@ -2,10 +2,10 @@
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
-        <a href="#">Back to top</a>
+        <a href="#">回到顶部</a>
       </p>
-      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p>New to Bootstrap? <a href="https://v4.bootcss.com/">Visit the homepage</a> or read our <a href="/docs/getting-started/introduction/">getting started guide</a>.</p>
+      <p>这里希望能让你们获取到自己想要的游戏制作又或者二次元文化</p>
+      <p>2099&nbsp;galiview.com&nbsp;&nbsp;浙ICP备 1234567890号</p>
     </div>
   </footer>
 </template>
