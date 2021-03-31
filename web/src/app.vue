@@ -58,7 +58,7 @@
                     <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                       <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>ß
+                    </div>
                     <small class="text-muted">9 mins</small>
                   </div>
                 </div>
@@ -162,23 +162,16 @@
 
     </main>
 
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
-        </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="https://v4.bootcss.com/">Visit the homepage</a> or read our <a href="/docs/getting-started/introduction/">getting started guide</a>.</p>
-      </div>
-    </footer>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
 
 import TheHeader from "./components/the-header";
+import TheFooter from "./components/the-footer";
 export default {
   name: 'app',
-  components: {TheHeader},
+  components: {TheFooter, TheHeader},
 }
 </script>
