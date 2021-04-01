@@ -8,7 +8,7 @@
           希望热爱二次元文化和游戏制作的小朋友们能够在社区里得到自己同伴，有别人没有的资源可以分享出来让大家能够为自己的梦想而奋斗
         </p>
         <p>
-          <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">点击进入社区</a>
+          <router-link to="/list" class="btn btn-primary my-2 p-3 font-weight-bold">点击进入社区</router-link>
         </p>
       </div>
     </section>
