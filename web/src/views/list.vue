@@ -6,7 +6,7 @@
           <div v-for="o in courses" class="col-md-4">
             <the-course v-bind:course="o"></the-course>
           </div>
-          <h3 v-show="courses.length === 0">视频还未上架</h3>
+          <h3 v-show="courses.length === 0">暂未视频发布</h3>
         </div>
       </div>
     </div>
@@ -27,14 +27,25 @@ export default {
   },
   mounted() {
     let _this = this;
-    _this.listCourse();
+    _this.listCourse(1);
   },
   methods: {
     /**
      * 查询课程列表
      */
-    listCourse() {
+    listCourse(page) {
       let _this = this;
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/course/list', {
+        page: page,
+        size: 3,
+      }).then((response) => {
+        let resp = response.data;
+        if (resp.success) {
+          _this.courses = resp.content.list;
+        }
+      }).catch((response) => {
+        console.log("error：", response);
+      })
     },
 
   }
