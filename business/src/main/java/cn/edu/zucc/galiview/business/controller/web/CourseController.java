@@ -1,8 +1,10 @@
 package cn.edu.zucc.galiview.business.controller.web;
 
 import cn.edu.zucc.galiview.server.dto.CourseDto;
+import cn.edu.zucc.galiview.server.dto.CoursePageDto;
 import cn.edu.zucc.galiview.server.dto.PageDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
+import cn.edu.zucc.galiview.server.enums.CourseStatusEnum;
 import cn.edu.zucc.galiview.server.service.CourseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +41,9 @@ public class CourseController {
      * 列表查询
      */
     @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    public ResponseDto list(@RequestBody CoursePageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
+        pageDto.setStatus(CourseStatusEnum.PUBLISH.getCode());
         courseService.list(pageDto);
         responseDto.setContent(pageDto);
         return responseDto;

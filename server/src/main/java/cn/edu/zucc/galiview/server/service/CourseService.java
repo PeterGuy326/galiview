@@ -3,10 +3,7 @@ package cn.edu.zucc.galiview.server.service;
 import cn.edu.zucc.galiview.server.domain.Course;
 import cn.edu.zucc.galiview.server.domain.CourseContent;
 import cn.edu.zucc.galiview.server.domain.CourseExample;
-import cn.edu.zucc.galiview.server.dto.CourseContentDto;
-import cn.edu.zucc.galiview.server.dto.CourseDto;
-import cn.edu.zucc.galiview.server.dto.PageDto;
-import cn.edu.zucc.galiview.server.dto.SortDto;
+import cn.edu.zucc.galiview.server.dto.*;
 import cn.edu.zucc.galiview.server.enums.CourseStatusEnum;
 import cn.edu.zucc.galiview.server.mapper.CourseContentMapper;
 import cn.edu.zucc.galiview.server.mapper.CourseMapper;
@@ -45,9 +42,13 @@ public class CourseService {
     /**
      * 列表查询
      */
-    public void list(PageDto pageDto) {
+    public void list(CoursePageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         CourseExample courseExample = new CourseExample();
+        CourseExample.Criteria criteria = courseExample.createCriteria();
+        if (!StringUtils.isEmpty(pageDto.getStatus())) {
+            criteria.andStatusEqualTo(pageDto.getStatus());
+        }
         courseExample.setOrderByClause("sort asc");
         List<Course> courseList = courseMapper.selectByExample(courseExample);
         PageInfo<Course> pageInfo = new PageInfo<>(courseList);
