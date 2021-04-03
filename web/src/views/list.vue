@@ -1,5 +1,29 @@
 <template>
   <main role="main">
+    <div class="header-nav">
+      <div class="clearfix">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <a v-on:click="onClickLevel1('00000000')" id="category-00000000" href="javascript:;" class="cur">全部</a>
+              <a v-for="o in level1" v-on:click="onClickLevel1(o.id)" v-bind:id="'category-' + o.id" href="javascript:;">{{o.name}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skill clearfix">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <a v-on:click="onClickLevel2('11111111')" id="category-11111111" href="javascript:;" class="on">不限</a>
+            <a v-for="o in level2" v-on:click="onClickLevel2(o.id)" v-bind:id="'category-' + o.id" href="javascript:;">{{o.name}}</a>
+
+            <div style="clear:both"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -12,7 +36,7 @@
           <div v-for="o in courses" class="col-md-4">
             <the-course v-bind:course="o"></the-course>
           </div>
-          <h3 v-show="courses.length === 0">暂未视频发布</h3>
+          <h3 v-show="courses.length === 0">视频还未发布</h3>
         </div>
       </div>
     </div>
@@ -84,16 +108,104 @@ export default {
                 c.children.push(child);
               }
             }
+          } else {
+            _this.level2.push(c);
           }
         }
-
-        _this.level2 = [];
       })
+    },
+
+    /**
+     * 点击一级分类时
+     * @param level1Id
+     */
+    onClickLevel1(level1Id) {
+      let _this = this;
+    },
+
+    /**
+     * 点击二级分类时
+     * @param level1Id
+     */
+    onClickLevel2(level2Id) {
+      let _this = this;
     },
 
   }
 }
 </script>
 <style>
-
+/* 头部 一级分类 */
+.header-nav {
+  height: auto;
+  background: #fff;
+  box-shadow: 0 8px 16px 0 rgba(28,31,33,.1);
+  padding: 16px 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  /*background-color: #d6e9c6;*/
+}
+.header-nav>div {
+  width: 100%;
+  padding-left: 12px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  /*background-color: #B4D5AC;*/
+}
+.header-nav a {
+  float: left;
+  font-size: 16px;
+  color: #07111b;
+  line-height: 50px;
+  height: 45px;
+  position: relative;
+  margin-right: 46px;
+  font-weight: 700;
+}
+.header-nav a:hover {
+  color: #c80;
+}
+.header-nav a.cur {
+  color: #c80;
+}
+.header-nav a.cur:before {
+  display: block;
+}
+.header-nav a:before {
+  display: none;
+  content: ' ';
+  position: absolute;
+  bottom: 0;
+  background: #c80;
+  width: 16px;
+  height: 3px;
+  left: 50%;
+  margin-left: -8px;
+}
+/* 二级分类 */
+.skill {
+  width: 100%;
+  padding: 24px 0 0;
+  position: relative;
+  margin: 0 auto;
+}
+.skill a.on {
+  color: #c80;
+  background: rgba(204,136,0,.1);
+}
+.skill a {
+  float: left;
+  margin-right: 20px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #4d555d;
+  line-height: 32px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.skill a:hover {
+  background: #d9dde1;
+}
 </style>
