@@ -44,11 +44,15 @@
               <div class="tab-pane active" id="info" v-html="course.content">
               </div>
               <div class="tab-pane" id="chapter">
-                <div v-for="chapter in chapters" class="chapter">
-                  <div class="chapter-chapter">
-                    <span class="folded-button">{{chapter.name}}</span>
+                <div v-for="(chapter, i) in chapters" class="chapter">
+                  <div v-on:click="doFolded(chapter, i)" class="chapter-chapter">
+                    <span>{{chapter.name}}</span>
+                    <span class="pull-right">
+                      <i v-show="chapter.folded" class="fa fa-plus-square" aria-hidden="true"></i>
+                      <i v-show="!chapter.folded" class="fa fa-minus-square" aria-hidden="true"></i>
+                    </span>
                   </div>
-                  <div>
+                  <div v-show="!chapter.folded">
                     <table class="table table-striped">
                       <tr v-for="(s, j) in chapter.sections" class="chapter-section-tr">
                         <td class="col-sm-8 col-xs-12">
@@ -133,6 +137,17 @@ export default {
         }
       })
     },
+
+    /**
+     * 展开/收缩一个章节
+     * @param chapter
+     */
+    doFolded (chapter, i) {
+      let _this = this;
+      chapter.folded = !chapter.folded;
+      // 在v-for里写v-show，只修改属性不起作用，需要$set
+      _this.$set(_this.chapters, i, chapter);
+    },
   }
 }
 </script>
@@ -172,6 +187,7 @@ export default {
   padding: 1.25rem;
   background-color: #23527c;
   color: white;
+  cursor: pointer;
 }
 .chapter-section-tr {
   font-size: 1rem;
