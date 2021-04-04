@@ -56,7 +56,7 @@
                     <table class="table table-striped">
                       <tr v-for="(s, j) in chapter.sections" class="chapter-section-tr">
                         <td class="col-sm-8 col-xs-12">
-                          <div class="section-title">
+                          <div v-on:click="play(s)" class="section-title">
                             <i class="fa fa-video-camera d-none d-sm-inline"></i>&nbsp;&nbsp;
                             <span class="d-none d-sm-inline">第{{j+1}}节&nbsp;&nbsp;</span>
                             {{s.title}}
@@ -91,13 +91,16 @@
       </div>
     </div>
 
+    <modal-player ref="modalPlayer"></modal-player>
   </main>
 </template>
 
 <script>
 
+import ModalPlayer from "../components/modal-player";
 export default {
   name: 'detail',
+  components: {ModalPlayer},
   data: function () {
     return {
       id: "",
@@ -148,6 +151,15 @@ export default {
       // 在v-for里写v-show，只修改属性不起作用，需要$set
       _this.$set(_this.chapters, i, chapter);
     },
+
+    /**
+     * 播放视频
+     * @param section
+     */
+    play(section) {
+      let _this = this;
+      _this.$refs.modalPlayer.playVod(section.vod);
+    }
   }
 }
 </script>
