@@ -22,6 +22,38 @@
             </p>
           </div>
         </div>
+
+        <div class="row">
+
+          <!-- 课程内容 & 大章小节 -->
+          <div class="col-md-9">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#info" data-toggle="tab">课程介绍</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#chapter" data-toggle="tab">章节目录</a>
+              </li>
+            </ul>
+
+            <br>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="info" v-html="course.content">
+              </div>
+              <div class="tab-pane" id="chapter">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 讲师信息 -->
+          <div class="col-md-3">
+          </div>
+
+        </div>
       </div>
     </div>
 
