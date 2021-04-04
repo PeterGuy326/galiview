@@ -51,6 +51,14 @@
 
           <!-- 讲师信息 -->
           <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+              <img v-bind:src="teacher.image" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{teacher.name}}</h5>
+                <p class="card-text">{{teacher.motto}}</p>
+                <p class="card-text">{{teacher.intro}}</p>
+              </div>
+            </div>
           </div>
 
         </div>
