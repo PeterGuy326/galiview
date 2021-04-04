@@ -44,6 +44,28 @@
               <div class="tab-pane active" id="info" v-html="course.content">
               </div>
               <div class="tab-pane" id="chapter">
+                <div v-for="chapter in chapters" class="chapter">
+                  <div class="chapter-chapter">
+                    <span class="folded-button">{{chapter.name}}</span>
+                  </div>
+                  <div>
+                    <table class="table table-striped">
+                      <tr v-for="(s, j) in chapter.sections" class="chapter-section-tr">
+                        <td class="col-sm-8 col-xs-12">
+                          <div class="section-title">
+                            <i class="fa fa-video-camera d-none d-sm-inline"></i>&nbsp;&nbsp;
+                            <span class="d-none d-sm-inline">第{{j+1}}节&nbsp;&nbsp;</span>
+                            {{s.title}}
+                            <span v-show="s.charge !== SECTION_CHARGE.CHARGE.key" class="badge badge-primary hidden-xs">免费</span>
+                          </div>
+                        </td>
+                        <td class="col-sm-1 text-right">
+                          <span class="badge badge-primary">{{s.time | formatSecond}}</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -79,7 +101,8 @@ export default {
       teacher: {},
       chapters: [],
       sections: [],
-      COURSE_LEVEL: COURSE_LEVEL
+      COURSE_LEVEL: COURSE_LEVEL,
+      SECTION_CHARGE: SECTION_CHARGE
     }
   },
   mounted() {
@@ -96,6 +119,18 @@ export default {
         _this.teacher = _this.course.teacher || {};
         _this.chapters = _this.course.chapters || [];
         _this.sections = _this.course.sections || [];
+
+        // 将所有的节放入对应的章中
+        for (let i = 0; i < _this.chapters.length; i++) {
+          let c = _this.chapters[i];
+          c.sections = [];
+          for (let j = 0; j < _this.sections.length; j++) {
+            let s = _this.sections[j];
+            if (c.id === s.chapterId) {
+              c.sections.push(s);
+            }
+          }
+        }
       })
     },
   }
@@ -103,6 +138,7 @@ export default {
 </script>
 
 <style>
+/* 课程信息 */
 .course-head {
 }
 .course-head h1 {
@@ -116,17 +152,53 @@ export default {
   font-size: 1rem;
   color: #555
 }
-
 .course-head a {
 }
-
 .course-head-price {
   font-size: 2rem;
 }
-
 @media (max-width: 700px) {
   .course-head h1 {
     font-size: 1.5rem;
+  }
+}
+
+/* 章节列表 */
+.chapter {
+  padding-bottom: 1.25rem;
+}
+.chapter-chapter {
+  font-size: 1.25rem;
+  padding: 1.25rem;
+  background-color: #23527c;
+  color: white;
+}
+.chapter-section-tr {
+  font-size: 1rem;
+}
+.chapter-section-tr td{
+  padding: 1rem 1.25rem;
+  vertical-align: middle;
+}
+/*鼠标手势*/
+.chapter-section-tr td .section-title{
+  color: #555;
+}
+.chapter-section-tr td .section-title:hover{
+  color: #23527c;
+  font-weight: bolder;
+  cursor: pointer;
+}
+/*行头小图标*/
+.chapter-section-tr td .section-title i{
+  color: #2a6496;
+}
+@media (max-width: 700px) {
+  .chapter-chapter {
+    font-size: 1.2rem;
+  }
+  .chapter-section-tr {
+    font-size: 0.9rem;
   }
 }
 </style>
