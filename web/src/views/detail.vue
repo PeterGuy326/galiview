@@ -138,6 +138,7 @@ export default {
             }
           }
         }
+        Tool.sortAsc(c.sections, "sort");
       })
     },
 

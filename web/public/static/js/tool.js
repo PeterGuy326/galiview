@@ -133,5 +133,26 @@ Tool = {
             }
         }
         return false;
+    },
+
+    /**
+     * 对象数组按
+     * @Param array
+     * @Param key
+     * @return {*}
+     */
+    sortAsc: function (array, key) {
+        return array.sort(function (obj1, obj2) {
+            let val1 = obj1[key];
+            let val2 = obj2[key];
+            console.log(val1, val2);
+            if (val1 < val2) {
+                return -1;
+            } else if (val1 > val2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
     }
 };
