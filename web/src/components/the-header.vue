@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <i class="ace-icon fa fa-video-camera"></i>&nbsp;嘎哩动漫视频
+          <i class="ace-icon fa fa-video-camera"></i>&nbsp;甲蛙课程
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
               <router-link class="nav-link" to="/">主页</router-link>
             </li>
             <li class="nav-item active">
-              <router-link class="nav-link" to="/list">全部视频</router-link>
+              <router-link class="nav-link" to="/list">全部课程</router-link>
             </li>
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,16 +30,30 @@
             </li>
           </ul>
           <span class="text-white">欢迎：</span>
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">登录/注册</button>
+          <button v-on:click="openLoginModal()" class="btn btn-outline-light my-2 my-sm-0" type="submit">登录/注册</button>
         </div>
       </div>
     </nav>
+
+    <the-login ref="loginComponent"></the-login>
   </header>
 </template>
 
 <script>
 
-export default {
-  name: 'theHeader',
-}
+  import TheLogin from "./login";
+  export default {
+    name: 'theHeader',
+    components: {TheLogin},
+    methods: {
+      /**
+       * 打开登录注册窗口
+       */
+      openLoginModal() {
+        let _this = this;
+        _this.$refs.loginComponent.openLoginModal();
+      },
+
+    }
+  }
 </script>
