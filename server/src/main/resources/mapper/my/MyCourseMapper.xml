@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zucc.galiview.server.mapper.my.MyCourseMapper">
 
+    <!-- web端【全部视频】页面，查询视频列表 -->
+    <select id="list" resultType="cn.edu.zucc.galiview.server.dto.CourseDto">
+        select c.id, c.name, c.summary, time, price, image, level,
+        charge, status, enroll, sort, created_at as createdAt,
+        updated_at as updatedAt, teacher_id as teacherId
+        from `course` c
+        <if test="pageDto.categoryId != null and pageDto.categoryId != ''">
+            , course_category cc
+        </if>
+        where 1 = 1
+        <if test="pageDto.categoryId != null and pageDto.categoryId != ''">
+            and c.id = cc.course_id
+            and cc.category_id = #{pageDto.categoryId}
+        </if>
+        <if test="pageDto.status != null and pageDto.status != ''">
+            and c.status = #{pageDto.status}
+        </if>
+        order by c.sort asc
+    </select>
+
     <update id="updateTime">
         update course c set `time` = (select sum(`time`) from `section` where course_id = #{courseId})
         where c.id = #{courseId}

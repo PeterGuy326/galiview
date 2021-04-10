@@ -5,22 +5,24 @@
   "scripts": {
     "serve-dev": "vue-cli-service serve --mode dev --port 8081",
     "serve-prod": "vue-cli-service serve --mode prod --port 8081",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^3.0.0",
-    "vue-router": "^3.5.1"
+    "axios": "^0.21.1",
+    "core-js": "^3.6.4",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
+    "@vue/cli-plugin-babel": "^4.2.0",
+    "@vue/cli-plugin-eslint": "^4.2.0",
+    "@vue/cli-service": "^4.2.0",
+    "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^6.1.2",
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
@@ -28,7 +30,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
+      "plugin:vue/essential",
       "eslint:recommended"
     ],
     "parserOptions": {
@@ -38,7 +40,6 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not dead"
+    "last 2 versions"
   ]
 }

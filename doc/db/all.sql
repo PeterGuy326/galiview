@@ -20,7 +20,7 @@ create table course
   default charset = utf8mb4 comment ='课程';
 
 INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000001', '测试课程01', '这是一门测试课程', 7200, 19.9, '', 1, 'C', 'D', 100, 0, now(), now());
+values ('00000001', '测试课程01', '这是一门测试课程', 7200, 19.9, '', 1, 'C', 'P', 100, 0, now(), now());
 
 alter table `course`
     add column (`teacher_id` char(8) comment '讲师|teacher.id');
@@ -297,7 +297,7 @@ create table `resource`
 (
     `id`      char(6)      not null default '' comment 'id',
     `name`    varchar(100) not null comment '名称|菜单或按钮',
-    `page`    varchar(50)  null comment '页面|路由',
+    `page`    varchar(50) null comment '页面|路由',
     `request` varchar(200) null comment '请求|接口',
     `parent`  char(6) comment '父id',
     primary key (`id`)
@@ -381,6 +381,24 @@ create table `role_user`
 
 insert into `role_user`
 values ('00000000', '00000000', '10000000');
+
+-- 会员
+drop table if exists `member`;
+create table `member`
+(
+    `id`            char(8)  not null default '' comment 'id',
+    `mobile` varchar(11) not null comment '手机号',
+    `password`      char(32) not null comment '密码',
+    `name`          varchar(50) comment '昵称',
+    `photo`         varchar(200) comment '头像url',
+    `register_time` datetime(3) comment '注册时间',
+    primary key (`id`),
+    unique key `mobile_unique` (`mobile`)
+) engine=innodb default charset=utf8mb4 comment='会员';
+
+#
+初始test/test
+insert into `member` (id, mobile, password, name, photo, register_time) values ('00000000', '12345678901', 'e70e2222a9d67c4f2eae107533359aa4', '测试', null, now());
 
 
 #测试

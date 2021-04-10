@@ -16,7 +16,7 @@
           <a href="index.html" class="navbar-brand">
             <small>
               <i class="fa fa-leaf"></i>
-              在线视频课程
+              在线视频动漫运营社区
             </small>
           </a>
         </div>
@@ -433,6 +433,14 @@
 
                 <b class="arrow"></b>
               </li>
+              <li v-show="hasResource('0204')" class="" id="business-member-sidebar">
+                <router-link to="/business/member">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  会员管理
+                </router-link>
+
+                <b class="arrow"></b>
+              </li>
 
             </ul>
           </li>
@@ -485,8 +493,8 @@
         <div class="footer-inner">
           <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">甲蛙</span>
-							在线视频课程 &copy; 2099-2099
+							<span class="blue bolder">galiview</span>
+							在线视频动漫运营社区 &copy; 2017-2099
 						</span>
 
             &nbsp; &nbsp;
