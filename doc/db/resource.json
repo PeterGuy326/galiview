@@ -37,6 +37,11 @@
     "children": [
       {"id": "020301", "name": "增删改查", "request": ["/business/admin/teacher"]}
     ]
+  }, {
+    "id": "0204", "name": "会员管理", "page": "business/member",
+    "children": [
+      {"id": "020401", "name": "增删改查", "request": ["/business/admin/member"]}
+    ]
   }]
 }, {
   "id": "03", "name": "文件管理",
