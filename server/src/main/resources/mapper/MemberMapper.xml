@@ -85,7 +85,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from member
     where id = #{id,jdbcType=CHAR}
@@ -101,12 +101,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.edu.zucc.galiview.server.domain.Member">
-    insert into member (id, mobile, `password`, 
-      `name`, photo, register_time
-      )
-    values (#{id,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, 
-      #{name,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}
-      )
+    insert into member (id, mobile, `password`,
+                        `name`, photo, register_time
+    )
+    values (#{id,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
+            #{name,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}
+           )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.zucc.galiview.server.domain.Member">
     insert into member
@@ -186,11 +186,11 @@
   <update id="updateByExample" parameterType="map">
     update member
     set id = #{record.id,jdbcType=CHAR},
-      mobile = #{record.mobile,jdbcType=VARCHAR},
-      `password` = #{record.password,jdbcType=CHAR},
-      `name` = #{record.name,jdbcType=VARCHAR},
-      photo = #{record.photo,jdbcType=VARCHAR},
-      register_time = #{record.registerTime,jdbcType=TIMESTAMP}
+    mobile = #{record.mobile,jdbcType=VARCHAR},
+    `password` = #{record.password,jdbcType=CHAR},
+    `name` = #{record.name,jdbcType=VARCHAR},
+    photo = #{record.photo,jdbcType=VARCHAR},
+    register_time = #{record.registerTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -219,10 +219,10 @@
   <update id="updateByPrimaryKey" parameterType="cn.edu.zucc.galiview.server.domain.Member">
     update member
     set mobile = #{mobile,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=CHAR},
-      `name` = #{name,jdbcType=VARCHAR},
-      photo = #{photo,jdbcType=VARCHAR},
-      register_time = #{registerTime,jdbcType=TIMESTAMP}
+        `password` = #{password,jdbcType=CHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        photo = #{photo,jdbcType=VARCHAR},
+        register_time = #{registerTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>
