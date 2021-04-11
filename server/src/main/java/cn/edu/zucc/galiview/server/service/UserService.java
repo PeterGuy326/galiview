@@ -123,7 +123,7 @@ public class UserService {
         User user = selectByLoginName(userDto.getLoginName());
         if (user == null) {
             LOG.info("用户名不存在, {}", userDto.getLoginName());
-            throw new BusinessException(BusinessExceptionCode.LOGIN_ERROR);
+            throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
         } else {
             if (user.getPassword().equals(userDto.getPassword())) {
                 // 登录成功
@@ -133,10 +133,12 @@ public class UserService {
                 return loginUserDto;
             } else {
                 LOG.info("密码不对, 输入密码：{}, 数据库密码：{}", userDto.getPassword(), user.getPassword());
-                throw new BusinessException(BusinessExceptionCode.LOGIN_ERROR);
+                throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
             }
         }
     }
+
+
 
     /**
      * 为登录用户读取权限

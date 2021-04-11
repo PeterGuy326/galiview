@@ -1,6 +1,7 @@
 package cn.edu.zucc.galiview.business.controller;
 
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
+import cn.edu.zucc.galiview.server.exception.BusinessException;
 import cn.edu.zucc.galiview.server.exception.ValidatorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,16 @@ public class ControllerExceptionHandler {
         responseDto.setSuccess(false);
         LOG.warn(e.getMessage());
         responseDto.setMessage("请求参数异常！");
+        return responseDto;
+    }
+
+    @ExceptionHandler(value = BusinessException.class)
+    @ResponseBody
+    public ResponseDto businessExceptionHandler(BusinessException e) {
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setSuccess(false);
+        LOG.error("业务异常：{}", e.getCode().getDesc());
+        responseDto.setMessage(e.getCode().getDesc());
         return responseDto;
     }
 }
