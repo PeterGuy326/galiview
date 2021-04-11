@@ -227,7 +227,9 @@
               LocalStorage.set(LOCAL_KEY_REMEMBER_MEMBER, null);
             }
 
-            // 登录成功 TODO
+            // 登录成功
+            _this.$parent.setLoginMember(loginMember);
+            $("#login-modal").modal("hide");
 
 
           } else {
