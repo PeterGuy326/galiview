@@ -258,7 +258,15 @@ export default {
         use: SMS_USE.REGISTER.key
       };
 
-      _this.sendSmsCode(sms, "register-send-code-btn");
+      _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/member/is-mobile-exist/' + _this.memberRegister.mobile).then((res)=>{
+        let response = res.data;
+        if (response.success) {
+          Toast.warning("手机号已被注册");
+        } else {
+          // 调服务端发送短信接口
+          _this.sendSmsCode(sms, "register-send-code-btn");
+        }
+      })
     },
 
     /**

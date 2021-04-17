@@ -83,6 +83,16 @@ public class MemberService {
      * @param mobile
      * @return
      */
+    public MemberDto findByMobile(String mobile) {
+        Member member = this.selectByMobile(mobile);
+        return CopyUtil.copy(member, MemberDto.class);
+    }
+
+    /**
+     * 按手机号查找
+     * @param mobile
+     * @return
+     */
     public Member selectByMobile(String mobile) {
         if (StringUtils.isEmpty(mobile)) {
             return null;
