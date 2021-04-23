@@ -232,6 +232,18 @@ export default {
 
     register() {
       let _this = this;
+
+      // 提交之前，先校验所有输入框
+      // 注意：当有一个文本框校验为false时，其它不校验
+      let validateResult = _this.onRegisterMobileBlur() &&
+          _this.onRegisterMobileCodeBlur() &&
+          _this.onRegisterNameBlur() &&
+          _this.onRegisterPasswordBlur() &&
+          _this.onRegisterConfirmPasswordBlur();
+      if (!validateResult) {
+        return;
+      }
+
       _this.memberRegister.password = hex_md5(_this.memberRegister.passwordOriginal + KEY);
 
       // 调服务端注册接口
