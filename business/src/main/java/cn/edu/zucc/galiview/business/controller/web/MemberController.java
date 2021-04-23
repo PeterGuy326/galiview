@@ -1,12 +1,15 @@
 package cn.edu.zucc.galiview.business.controller.web;
 
-import com.alibaba.fastjson.JSON;
 import cn.edu.zucc.galiview.server.dto.LoginMemberDto;
 import cn.edu.zucc.galiview.server.dto.MemberDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
+import cn.edu.zucc.galiview.server.dto.SmsDto;
+import cn.edu.zucc.galiview.server.enums.SmsUseEnum;
 import cn.edu.zucc.galiview.server.service.MemberService;
+import cn.edu.zucc.galiview.server.service.SmsService;
 import cn.edu.zucc.galiview.server.util.UuidUtil;
 import cn.edu.zucc.galiview.server.util.ValidatorUtil;
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -30,6 +33,9 @@ public class MemberController {
     @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
 
+    @Resource
+    private SmsService smsService;
+
     /**
      * 保存，id有值时更新，无值时新增
      */
@@ -44,6 +50,14 @@ public class MemberController {
 
         // 密码加密
         memberDto.setPassword(DigestUtils.md5DigestAsHex(memberDto.getPassword().getBytes()));
+
+        // 校验短信验证码
+        SmsDto smsDto = new SmsDto();
+        smsDto.setMobile(memberDto.getMobile());
+        smsDto.setCode(memberDto.getSmsCode());
+        smsDto.setUse(SmsUseEnum.REGISTER.getCode());
+        smsService.validCode(smsDto);
+        LOG.info("短信验证码校验通过");
 
         ResponseDto responseDto = new ResponseDto();
         memberService.save(memberDto);

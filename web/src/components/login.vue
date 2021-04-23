@@ -53,7 +53,7 @@
                 <input v-on:blur="onRegisterMobileCodeBlur()"
                        v-bind:class="registerMobileCodeValidateClass"
                        id="register-mobile-code" class="form-control"
-                       placeholder="手机验证码" v-model="memberRegister.code">
+                       placeholder="手机验证码" v-model="memberRegister.smsCode">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" id="register-send-code-btn"
                           v-on:click="sendSmsForRegister()">发送验证码
@@ -393,7 +393,7 @@ export default {
 
     onRegisterMobileCodeBlur () {
       let _this = this;
-      _this.registerMobileCodeValidate = Pattern.validateMobileCode(_this.memberRegister.code);
+      _this.registerMobileCodeValidate = Pattern.validateMobileCode(_this.memberRegister.smsCode);
       return _this.registerMobileValidate;
     },
 
