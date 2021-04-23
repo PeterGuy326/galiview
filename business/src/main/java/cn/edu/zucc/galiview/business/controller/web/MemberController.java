@@ -5,6 +5,7 @@ import cn.edu.zucc.galiview.server.dto.MemberDto;
 import cn.edu.zucc.galiview.server.dto.ResponseDto;
 import cn.edu.zucc.galiview.server.dto.SmsDto;
 import cn.edu.zucc.galiview.server.enums.SmsUseEnum;
+import cn.edu.zucc.galiview.server.exception.BusinessException;
 import cn.edu.zucc.galiview.server.service.MemberService;
 import cn.edu.zucc.galiview.server.service.SmsService;
 import cn.edu.zucc.galiview.server.util.UuidUtil;
@@ -109,6 +110,43 @@ public class MemberController {
         ResponseDto responseDto = new ResponseDto();
         redisTemplate.delete(token);
         LOG.info("从redis中删除token:{}", token);
+        return responseDto;
+    }
+
+    /**
+     * 校验手机号是否存在
+     * 存在则success=true，不存在则success=false
+     */
+    @GetMapping(value = "/is-mobile-exist/{mobile}")
+    public ResponseDto isMobileExist(@PathVariable(value = "mobile") String mobile) throws BusinessException {
+        LOG.info("查询手机号是否存在开始");
+        ResponseDto responseDto = new ResponseDto();
+        MemberDto memberDto = memberService.findByMobile(mobile);
+        if (memberDto == null) {
+            responseDto.setSuccess(false);
+        } else {
+            responseDto.setSuccess(true);
+        }
+        return responseDto;
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseDto resetPassword(@RequestBody MemberDto memberDto) throws BusinessException {
+        LOG.info("会员密码重置开始:");
+        memberDto.setPassword(DigestUtils.md5DigestAsHex(memberDto.getPassword().getBytes()));
+        ResponseDto<MemberDto> responseDto = new ResponseDto();
+
+        // 校验短信验证码
+        SmsDto smsDto = new SmsDto();
+        smsDto.setMobile(memberDto.getMobile());
+        smsDto.setCode(memberDto.getSmsCode());
+        smsDto.setUse(SmsUseEnum.FORGET.getCode());
+        smsService.validCode(smsDto);
+        LOG.info("短信验证码校验通过");
+
+        // 重置密码
+        memberService.resetPassword(memberDto);
+
         return responseDto;
     }
 }
