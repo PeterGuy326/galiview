@@ -24,7 +24,7 @@
 
         <hr>
 
-        <div class="title2">好课推荐</div>
+        <div class="title2">好视频推荐</div>
         <div class="row">
           <div v-for="o in news" class="col-md-4">
             <the-course v-bind:course="o"></the-course>
