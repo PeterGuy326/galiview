@@ -105,4 +105,12 @@ public class MemberCourseService {
             return memberCourseList.get(0);
         }
     }
+
+    /**
+     * 获取报名信息
+     */
+    public MemberCourseDto getEnroll(MemberCourseDto memberCourseDto) {
+        MemberCourse memberCourse = this.select(memberCourseDto.getMemberId(), memberCourseDto.getCourseId());
+        return CopyUtil.copy(memberCourse, MemberCourseDto.class);
+    }
 }

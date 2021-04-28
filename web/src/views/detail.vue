@@ -129,6 +129,9 @@ export default {
         _this.chapters = _this.course.chapters || [];
         _this.sections = _this.course.sections || [];
 
+        // 获取报名信息
+        _this.getEnroll();
+
         // 将所有的节放入对应的章中
         for (let i = 0; i < _this.chapters.length; i++) {
           let c = _this.chapters[i];
@@ -197,6 +200,27 @@ export default {
           Toast.success("报名成功！");
         } else {
           Toast.warning(resp.message);
+        }
+      });
+    },
+
+    /**
+     * 获取报名
+     */
+    getEnroll() {
+      let _this = this;
+      let loginMember = Tool.getLoginMember();
+      if (Tool.isEmpty(loginMember)) {
+        console.log("未登录");
+        return;
+      }
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/member-course/get-enroll', {
+        courseId: _this.course.id,
+        memberId: loginMember.id
+      }).then((response)=>{
+        let resp = response.data;
+        if (resp.success) {
+          _this.memberCourse = resp.content || {};
         }
       });
     },
