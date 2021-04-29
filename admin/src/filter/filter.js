@@ -47,11 +47,11 @@ let formatSecond = (value) => {
     let second = parseInt(value, 10); // 秒
     let minute = 0; // 分
     let hour = 0; // 小时
-    if (second > 60) {
+    if (second >= 60) {
         // 当大于60秒时，才需要做转换
         minute = Math.floor(second / 60);
         second = Math.floor(second % 60);
-        if (minute > 60) {
+        if (minute >= 60) {
             hour = Math.floor(minute / 60);
             minute = Math.floor(minute % 60);
         }
