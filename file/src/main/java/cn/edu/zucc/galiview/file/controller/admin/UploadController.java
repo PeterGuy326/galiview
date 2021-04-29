@@ -33,6 +33,9 @@ public class UploadController {
     @Value("${file.domain}")
     private String FILE_DOMAIN;
 
+    @Value("${oss.domain}")
+    private String OSS_DOMAIN;
+
     @Value("${file.path}")
     private String FILE_PATH;
 
@@ -149,7 +152,7 @@ public class UploadController {
         FileDto fileDto = fileService.findByKey(key);
         if (fileDto != null) {
             if (StringUtils.isEmpty(fileDto.getVod())) {
-                fileDto.setPath(FILE_DOMAIN + fileDto.getPath());
+                fileDto.setPath(OSS_DOMAIN + fileDto.getPath());
             } else {
                 DefaultAcsClient vodClient = VodUtil.initVodClient(accessKeyId, accessKeySecret);
                 GetMezzanineInfoResponse response = VodUtil.getMezzanineInfo(vodClient, fileDto.getVod());
