@@ -17,6 +17,10 @@ export default {
     }
   },
   methods: {
+    pause() {
+      let _this = this;
+      _this.aliPlayer.pause();
+    },
     playUrl(url) {
       let _this = this;
       console.log("开始播放:", url);
