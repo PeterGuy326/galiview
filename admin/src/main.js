@@ -25,7 +25,23 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
   console.log("返回结果：", response);
   return response;
-}, error => {});
+}, error => {
+  console.log("返回拦截：", error.response);
+  let response = error.response;
+  const status = response.status;
+  if (status === 401) {
+    // 判断状态码是401 跳转到登录
+    console.log("未登录，跳到登录页面");
+    Tool.setLoginUser(null);
+    router.push('/login');
+  }
+  return {
+    data: {
+      success: false,
+      message: "请重新登录"
+    }
+  };
+});
 
 // 全局过滤器
 Object.keys(filter).forEach(key => {
