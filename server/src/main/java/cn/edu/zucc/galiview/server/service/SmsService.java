@@ -132,7 +132,7 @@ public class SmsService {
                 LOG.warn("短信验证码不正确");
                 throw new BusinessException(BusinessExceptionCode.MOBILE_CODE_ERROR);
             } else {
-                smsDto.setStatus(SmsStatusEnum.USED.getCode());
+                smsDb.setStatus(SmsStatusEnum.USED.getCode());
                 smsMapper.updateByPrimaryKey(smsDb);
             }
         } else {
