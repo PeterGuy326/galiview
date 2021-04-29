@@ -22,8 +22,10 @@ public class KaptchaConfig {
         properties.setProperty("kaptcha.session.key", "code");
         properties.setProperty("kaptcha.textproducer.char.length", "4");
         properties.setProperty("kaptcha.textproducer.font.names", "Arial");
+        properties.setProperty("kaptcha.noise.color", "255,96,0");
         properties.setProperty("kaptcha.noise.impl", "com.google.code.kaptcha.impl.NoNoise");
-        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.WaterRipple");
+//        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.WaterRipple");
+        properties.setProperty("kaptcha.obscurificator.impl", "cn.zucc.edu.galiview.server.util.NoWaterRipple");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
