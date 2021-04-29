@@ -238,6 +238,14 @@ export default {
   mounted() {
     let _this = this;
     _this.toLoginDiv();
+
+    // 监听事件总线，openLoginModal事件
+    _this.$event.$on("openLoginModal", function (param) {
+      console.log(param);
+      // 前端调试可以使用debugger。
+      // debugger;
+      _this.openLoginModal();
+    })
   },
   methods: {
 
