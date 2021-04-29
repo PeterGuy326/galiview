@@ -484,6 +484,8 @@ export default {
       let _this = this;
       let image = resp.content.path;
       _this.course.image = image;
+      // 解决不能实时预览的问题
+      _this.$forceUpdate();
     },
 
   }

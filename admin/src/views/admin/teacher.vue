@@ -155,6 +155,10 @@ export default {
      */
     add() {
       let _this = this;
+      // 新增讲师，上传头像后不能实时预览，解决方法一
+      // _this.teacher = {
+      //   image: null
+      // };
       _this.teacher = {};
       $("#form-modal").modal("show");
     },
@@ -205,6 +209,7 @@ export default {
         return;
       }
 
+      console.log(_this.teacher);
       Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/teacher/save', _this.teacher).then((response)=>{
         Loading.hide();
@@ -241,6 +246,8 @@ export default {
       let _this = this;
       let image = resp.content.path;
       _this.teacher.image = image;
+      // 新增讲师，上传头像后不能实时预览，解决方法二
+      _this.$forceUpdate();
     }
   }
 }
