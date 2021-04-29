@@ -15,6 +15,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class LoginAdminGatewayFilter implements GatewayFilter, Ordered {
@@ -58,6 +59,7 @@ public class LoginAdminGatewayFilter implements GatewayFilter, Ordered {
             LOG.info("接口权限校验，请求地址：{}", path);
             boolean exist = false;
             JSONObject loginUserDto = JSON.parseObject(String.valueOf(object));
+            redisTemplate.opsForValue().set(token, JSON.toJSONString(loginUserDto), 3600, TimeUnit.SECONDS);
             JSONArray requests = loginUserDto.getJSONArray("requests");
             // 遍历所有【权限请求】，判断当前请求的地址是否在【权限请求】里
             for (int i = 0, l = requests.size(); i < l; i++) {
