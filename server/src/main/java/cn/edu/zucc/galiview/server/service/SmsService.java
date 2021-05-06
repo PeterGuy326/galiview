@@ -35,6 +35,7 @@ public class SmsService {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         SmsExample smsExample = new SmsExample();
+        smsExample.setOrderByClause("at desc");
         List<Sms> smsList = smsMapper.selectByExample(smsExample);
         PageInfo<Sms> pageInfo = new PageInfo<>(smsList);
         pageDto.setTotal(pageInfo.getTotal());

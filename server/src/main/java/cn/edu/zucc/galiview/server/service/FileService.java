@@ -28,6 +28,7 @@ public class FileService {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         FileExample fileExample = new FileExample();
+        fileExample.setOrderByClause("created_at desc");
         List<File> fileList = fileMapper.selectByExample(fileExample);
         PageInfo<File> pageInfo = new PageInfo<>(fileList);
         pageDto.setTotal(pageInfo.getTotal());
