@@ -22,7 +22,7 @@ public class GateWayApplication {
 		SpringApplication app = new SpringApplication(GateWayApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		LOG.info("启动成功！！");
-		LOG.info("Gateway地址: \thttp://127.0.0.1:{}", env.getProperty("server.port"));
+		LOG.info("GateWay地址: \thttp://127.0.0.1:{}", env.getProperty("server.port"));
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class GateWayApplication {
 
 		config.setAllowCredentials(Boolean.TRUE);
 		config.addAllowedMethod("*");
-		config.addAllowedOriginPattern("*");
+		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
 		config.setMaxAge(3600L);
 
